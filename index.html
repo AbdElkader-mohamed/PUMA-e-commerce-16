@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PUMA</title>
+  <link rel="shortcut icon" href="./assets/image/icon.png">
+  <!-- bootstrap icons-->
+  <link rel="stylesheet" href="./assets/css/vendors/bootstrap-icons.min.css">
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="./assets/css/vendors/bootstrap.min.css">
+  <!-- main css -->
+  <link rel="stylesheet" href="./assets/css/main.css">
+</head>
+<body>
+  <!-- ovarlay for nav  -->
+  <div class="ovarlay"></div>
+  <!-- ovarlay modal alerts -->
+  <div class="ovarlay2"></div>
+  <!-- loading -->
+  <div class="main-loding"><div><span></span> <span></span></div></div>
+  <!-- start offcanvas  -->
+  <div class="cartOffcanvas closeItem" id="cartOffcanvas">
+    <div class="loading-banner"><span></span> <span></span> <span></span></div>
+    <div class="offcanvas-body">
+    <div class="offcanvas-header" ><h2> my shopping cart </h2> <button class="btn closeBtn" > <i class="bi bi-x-lg" ></i> </button></div>
+    <div class="offcanvas-content">
+      <iframe src="cart.html" frameborder="1"></iframe>
+    </div>
+    </div>
+  </div>
+  <!-- end offcanvas  -->
+  <!-- start nav bar -->
+  <header>
+    <!-- start navbar desktop -->
+    <nav class="navbar navbar-expand-xl bg-dark">
+      <div class="container-fluid px-4">
+        <a class="navbar-brand" href="index.html"><img src="./assets/image/logo.png" class="img-fluid logo" alt=""></a>
+        <button class="navbar-toggler open ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="collapseNav">
+          <span class="navbar-toggler-icon">
+            <i class="bi bi-list" ></i>
+          </span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapseNav">
+          <ul class="navbar-nav me-lg-auto mb-2 mb-lg-0 ">
+            <li class="nav-item m-auto m-lg-0">
+              <a class="nav-link main" href="women.html">Women</a>
+              <div class="menu row g-0">
+                <ul class="list-unstyled mb-0 col-3" >
+                  <li class="nav-item" >
+                    <button data-target="women-new" class="nav-link go-to-target">New Arrivals</button>
+                    <button data-target="women-75" class="nav-link go-to-target">PUMA 75 Anniversary</button>
+                    <button data-target="women-slipstream" class="nav-link go-to-target">Slipstream</button>
+                    <button data-target="women-sustainable" class="nav-link go-to-target">Sustainable Fashion</button>
+                    <button data-target="women-classics" class="nav-link go-to-target">Classics</button>
+                    <button data-target="women-mayze" class="nav-link go-to-target">Mayze</button>
+                    <button data-target="women-cali" class="nav-link go-to-target">Cali</button>
+                    <button data-target="women-suede" class="nav-link go-to-target">Suede</button>
+                    <button data-target="women-nitro" class="nav-link go-to-target">Nitro</button>
+                    <button data-target="women-sale" class="nav-link go-to-target">Sale</button>
+                  </li>
+                </ul>
+                <div class="row col-9">
+                  <div class="col-lg-3 items">
+                    <button data-target="women-shoes" class="nav-link go-to-target"><span>Shoes</span></button>
+                    <ul class="list-unstyled mb-0 mt-2" >
+                      <li><button data-target="women-shoes-sneakers" class="nav-link go-to-target">Sneakers</button></li>
+                      <li><button data-target="women-shoes-running" class="nav-link go-to-target">Running</button></li>
+                      <li><button data-target="women-shoes-training" class="nav-link go-to-target">Training</button></li>
+                      <li><button data-target="women-shoes-sandals" class="nav-link go-to-target">Slides and Sandals</button></li>
+                      <li><button data-target="women-shoes-motorSport" class="nav-link go-to-target">Motor sport</button></li>
+                      <li><button data-target="women-shoes-football" class="nav-link go-to-target">Football</button></li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-3 items">
+                    <button data-target="women-clothing" class="nav-link go-to-target"><span>Clothing</span></button>
+                    <ul class="list-unstyled mb-0 mt-2" >
+                      <li><button data-target="women-clothing-leggings" class="nav-link go-to-target">Leggings</button></li>
+                      <li><button data-target="women-clothing-shirts" class="nav-link go-to-target">T-Shirts & Tops</button></li>
+                      <li><button data-target="women-clothing-hoodie" class="nav-link go-to-target">Sweatshirts & Hoodies</button></li>
+                      <li><button data-target="women-clothing-jackets" class="nav-link go-to-target">Jackets</button></li>
+                      <li><button data-target="women-clothing-pants" class="nav-link go-to-target">Pants & Joggers</button></li>
+                      <li><button data-target="women-clothing-tracksuit" class="nav-link go-to-target">Tracksuits</button></li>
+                      <li><button data-target="women-clothing-short" class="nav-link go-to-target">Shorts</button></li>
+                      <li><button data-target="women-clothing-dresses" class="nav-link go-to-target">Dresses & Skirts</button></li>
+                      <li><button data-target="women-clothing-jerseys" class="nav-link go-to-target">Jerseys</button></li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-3 items">
+                    <button data-target="women-accessories" class="nav-link go-to-target"><span>Accessories</span></button>
+                    <ul class="list-unstyled mb-0 mt-2" >
+                      <li><button data-target="women-accessories-backPacks" class="nav-link go-to-target">Backpacks</button></li>
+                      <li><button data-target="women-accessories-bags" class="nav-link go-to-target">Bags</button></li>
+                      <li><button data-target="women-accessories-hats" class="nav-link go-to-target">Hats & Headwear</button></li>
+                      <li><button data-target="women-accessories-glovs" class="nav-link go-to-target">Gloves</button></li>
+                      <li><button data-target="women-accessories-shoeCar" class="nav-link go-to-target">Shoe Care</button></li>
+                      <li><button data-target="women-accessories-wallets" class="nav-link go-to-target">Wallets</button></li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-3 items">
+                    <button data-target="women-sports" class="nav-link go-to-target"><span>Sports</span></button>
+                    <ul class="list-unstyled mb-0 mt-2">
+                      <li><button data-target="women-sports-running" class="nav-link go-to-target">Running</button></li>
+                      <li><button data-target="women-sports-training" class="nav-link go-to-target">Training</button></li>
+                      <li><button data-target="women-sports-yoga" class="nav-link go-to-target">Yoga</button></li>
+                      <li><button data-target="women-sports-football" class="nav-link go-to-target">Football</button></li>
+                      <li><button data-target="women-sports-motorSport" class="nav-link go-to-target">Motor sport</button></li>
+                      <li><button data-target="women-sports-basketball" class="nav-link go-to-target">Basketball</button></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item m-auto m-lg-0">
+              <a class="nav-link main" href="men.html">Men</a>
+              <div class="menu row g-0">
+                <ul class="list-unstyled mb-0 col-3" >
+                  <li class="nav-item" >
+                    <button data-target="men-new" class="nav-link go-to-target">New Arrivals</button>
+                    <button data-target="men-75" class="nav-link go-to-target">PUMA 75 Anniversary</button>
+                    <button data-target="men-slipstream" class="nav-link go-to-target">Slipstream</button>
+                    <button data-target="men-nitro" class="nav-link go-to-target">Nitro</button>
+                    <button data-target="men-sustainable" class="nav-link go-to-target">Sustainable Fashion</button>
+                    <button data-target="men-classic" class="nav-link go-to-target">Classics</button>
+                    <button data-target="men-motorSport" class="nav-link go-to-target">Motor Sport</button>
+                    <button data-target="men-sale" class="nav-link go-to-target">Sale</button>
+                  </li>
+                </ul>
+                <div class="row col-9">
+                  <div class="col-lg-3 items">
+                    <button data-target="men-shoes" class="nav-link go-to-target"><span>Shoes</span></button>
+                    <ul class="list-unstyled mb-0 mt-2" >
+                      <li><button data-target="men-shoes-sneakers" class="nav-link go-to-target">Sneakers</button></li>
+                      <li><button data-target="men-shoes-running" class="nav-link go-to-target">Running</button></li>
+                      <li><button data-target="men-shoes-football" class="nav-link go-to-target">Football</button></li>
+                      <li><button data-target="men-shoes-training" class="nav-link go-to-target">Training</button></li>
+                      <li><button data-target="men-shoes-basketball" class="nav-link go-to-target">basketball</button></li>
+                      <li><button data-target="men-shoes-motorSport" class="nav-link go-to-target">Motor sport</button></li>
+                      <li><button data-target="men-shoes-sandals" class="nav-link go-to-target">Slides and Sandals</button></li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-3 items">
+                    <button data-target="men-clothing" class="nav-link go-to-target"><span>Clothing</span></button>
+                    <ul class="list-unstyled mb-0 mt-2" >
+                      <li><button data-target="men-clothing-hoodie" class="nav-link go-to-target">Sweatshirts & Hoodies</button></li>
+                      <li><button data-target="men-clothing-shirts" class="nav-link go-to-target">T-Shirts & Tops</button></li>
+                      <li><button data-target="men-clothing-pants" class="nav-link go-to-target">Pants & Joggers</button></li>
+                      <li><button data-target="men-clothing-jackets" class="nav-link go-to-target">Jackets</button></li>
+                      <li><button data-target="men-clothing-jerseys" class="nav-link go-to-target">Jerseys</button></li>
+                      <li><button data-target="men-clothing-short" class="nav-link go-to-target">Shorts</button></li>
+                      <li><button data-target="men-clothing-polo" class="nav-link go-to-target">Polos</button></li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-3 items">
+                    <button data-target="men-accessories" class="nav-link go-to-target"><span>Accessories</span></button>
+                    <ul class="list-unstyled mb-0 mt-2" >
+                      <li><button data-target="men-accessories-bags" class="nav-link go-to-target">Bags</button></li>
+                      <li><button data-target="men-accessories-backPacks" class="nav-link go-to-target">Backpacks</button></li>
+                      <li><button data-target="men-accessories-hats" class="nav-link go-to-target">Hats</button></li>
+                      <li><button data-target="men-accessories-sportEquipment" class="nav-link go-to-target">Sport Equipment</button></li>
+                      <li><button data-target="men-accessories-balls" class="nav-link go-to-target">Balls</button></li>
+                      <li><button data-target="men-accessories-shoeCare" class="nav-link go-to-target">Shoe Care</button></li>
+                      <li><button data-target="men-accessories-glovs" class="nav-link go-to-target">Gloves</button></li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-3 items">
+                    <button data-target="men-sports" class="nav-link go-to-target"><span>Sports</span></button>
+                    <ul class="list-unstyled mb-0 mt-2">
+                      <li><button data-target="men-sports-running" class="nav-link go-to-target">Running</button></li>
+                      <li><button data-target="men-sports-football" class="nav-link go-to-target">Football</button></li>
+                      <li><button data-target="men-sports-basketball" class="nav-link go-to-target">Basketball</button></li>
+                      <li><button data-target="men-sports-training" class="nav-link go-to-target">Training</button></li>
+                      <li><button data-target="men-sports-swimwear" class="nav-link go-to-target">Swimwear</button></li>
+                      <li><button data-target="men-sports-motorSport" class="nav-link go-to-target">Motor sport</button></li>
+                      <li><button data-target="men-sports-yoga" class="nav-link go-to-target">Yoga</button></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item m-auto m-lg-0">
+              <a class="nav-link main" href="kids.html">Kids</a>
+              <div class="menu row g-0">
+                <ul class="list-unstyled mb-0 col-3" >
+                  <li class="nav-item" >
+                    <button data-target="kids-new" class="nav-link go-to-target">New Arrivals</button>
+                    <button data-target="kids-sale" class="nav-link go-to-target">Sale</button>
+                  </li>
+                </ul>
+                <div class="row col-9">
+                  <div class="col-8">
+                    <div class="row">
+                      <div class="col-lg-6 items mb-4">
+                        <button data-target="kids-boys" class="nav-link go-to-target"><span>Boys</span></button>
+                        <ul class="list-unstyled mb-0 mt-2" >
+                          <li><button data-target="kids-boys-shoes" class="nav-link go-to-target">Shoes</button></li>
+                          <li><button data-target="kids-boys-clothing" class="nav-link go-to-target">Clothing</button></li>
+                          <li><button data-target="kids-boys-accessories" class="nav-link go-to-target">Accessories</button></li>
+                          <li><button data-target="kids-boys-football" class="nav-link go-to-target">Football</button></li>
+                        </ul>
+                      </div>
+                      <div class="col-lg-6 items mb-4">
+                        <button data-target="kids-girls" class="nav-link go-to-target"><span>Girls</span></button>
+                        <ul class="list-unstyled mb-0 mt-2" >
+                          <li><button data-target="kids-girls-shoes" class="nav-link go-to-target">Shoes</button></li>
+                          <li><button data-target="kids-girls-clothing" class="nav-link go-to-target">Clothing</button></li>
+                          <li><button data-target="kids-girls-accessories" class="nav-link go-to-target">Accessories</button></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-4 items">
+                    <button data-target="kids-collections" class="nav-link go-to-target"><span>Collections</span></button>
+                    <ul class="list-unstyled mb-0 mt-2" >
+                      <li><button data-target="kids-collections-pokemon" class="nav-link go-to-target">PUMA X POKEMON</button></li>
+                      <li><button data-target="kids-collections-cottons" class="nav-link go-to-target">PUMA X TINYCOTTONS</button></li>
+                      <li><button data-target="kids-collections-fandom" class="nav-link go-to-target">FANDOM</button></li>
+                      <li><button data-target="kids-collections-cali" class="nav-link go-to-target">Cali</button></li>
+                      <li><button data-target="kids-collections-motorSport" class="nav-link go-to-target">Motor sport</button></li>
+                      <li><button data-target="kids-collections-riderPack" class="nav-link go-to-target">PUMA Rider Pack</button></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item m-auto m-lg-0">
+              <button class="nav-link main go-to-target" data-target="collections">Collections</button>
+              <div class="menu">
+                <div class="row">
+                  <div class="col-3 items">
+                    <button data-target="collections-select" class="nav-link go-to-target"><span> SELECT</span></button>
+                    <ul class="list-unstyled mb-0 mt-2 items" >
+                      <li><button data-target="collections-select-ami" class="nav-link go-to-target">PUMA x AMI</button></li>
+                      <li><button data-target="collections-select-pam" class="nav-link go-to-target">PUMA x PAM</button></li>
+                    </ul>
+                    <ul class="list-unstyled mb-0 mt-2 items" >
+                      <li><button data-target="collections-select-mmq" class="nav-link">MMQ</button></li>
+                      <li><button data-target="collections-select-inland" class="nav-link">INLAND</button></li>
+                      <li><button data-target="collections-select-players" class="nav-link">PLAYERS LOUNGE</button></li>
+                      <li><button data-target="collections-select-trinomic" class="nav-link">Trinomic</button></li>
+                      <li><button data-target="collections-select-trackmeet" class="nav-link">TRACK MEET</button></li>
+                    </ul>
+                  </div>
+                  <div class="col-3 items">
+                    <button data-target="collections-lifestyle" class="nav-link go-to-target"><span>Lifestyle</span></button>
+                    <ul class="list-unstyled mb-0 mt-2 items" >
+                      <li><button data-target="collections-lifestyle-davido" class="nav-link go-to-target">PUMA x DAVIDO</button></li>
+                      <li><button data-target="collections-lifestyle-spongeBob" class="nav-link go-to-target">PUMA x SPONGEBOB</button></li>
+                      <li><button data-target="collections-lifestyle-cocaCola" class="nav-link go-to-target">PUMA x COCA COLA</button></li>
+                      <li><button data-target="collections-lifestyle-njr" class="nav-link go-to-target">PUMA x NJR</button></li>
+                      <li><button data-target="collections-lifestyle-pokemon" class="nav-link go-to-target">PUMA x POKEMON</button></li>
+                      <li><button data-target="collections-lifestyle-vogue" class="nav-link go-to-target">PUMA x VOGUE</button></li>
+                      <li><button data-target="collections-lifestyle-ragged" class="nav-link go-to-target">PUMA x RAGGED PRIEST</button></li>
+                    </ul>
+                    <ul class="list-unstyled mb-0 mt-2 items" >
+                      <li><button data-target="collections-lifestyle-caPro" class="nav-link go-to-target">CA Pro</button></li>
+                      <li><button data-target="collections-lifestyle-mayze" class="nav-link go-to-target">Mayze</button></li>
+                      <li><button data-target="collections-lifestyle-slipstream" class="nav-link go-to-target">Slipstream</button></li>
+                      <li><button data-target="collections-lifestyle-cali" class="nav-link go-to-target">Cali</button></li>
+                      <li><button data-target="collections-lifestyle-mirage" class="nav-link go-to-target">Mirage</button></li>
+                      <li><button data-target="collections-lifestyle-riderPack" class="nav-link go-to-target">PUMA Rider Pack</button></li>
+                      <li><button data-target="collections-lifestyle-collection" class="nav-link go-to-target">RS-Collection</button></li>
+                      <li><button data-target="collections-lifestyle-suede" class="nav-link go-to-target">Suede</button></li>
+                      <li><button data-target="collections-lifestyle-sustainable" class="nav-link go-to-target">Sustainable Fashion</button></li>
+                      <li><button data-target="collections-lifestyle-smash" class="nav-link go-to-target">Smash</button></li>
+                    </ul>
+                  </div>
+                  <div class="col-3 items">
+                    <a href="#" class="nav-link"><span>Collections</span></a>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item m-auto m-lg-0">
+              <button data-target="sports" class="nav-link main go-to-target" >Sports</button>
+              <div class="menu">
+                <div class="row">
+                  <div class="col-3 items">
+                    <button data-target="sports-football" class="nav-link go-to-target"><span> Football</span></button>
+                    <ul class="list-unstyled mb-0 mt-2" >
+                      <li><button data-target="sports-football-footballBoots" class="nav-link go-to-target">Football Boots</button></li>
+                      <li><button data-target="sports-football-footballApparel" class="nav-link go-to-target">Football Apparel</button></li>
+                      <li><button data-target="sports-football-nationalTeam" class="nav-link go-to-target">National Teams</button></li>
+                      <li><button data-target="sports-football-footballClubs" class="nav-link go-to-target">Football Clubs</button></li>
+                      <li><button data-target="sports-football-egypt" class="nav-link go-to-target">Egypt</button></li>
+                      <li><button data-target="sports-football-morocco" class="nav-link go-to-target">Morocco</button></li>
+                      <li><button data-target="sports-football-olumpique" class="nav-link go-to-target">Olympique de Marseille</button></li>
+                      <li><button data-target="sports-football-milan" class="nav-link go-to-target">AC Milan</button></li>
+                      <li><button data-target="sports-football" class="nav-link go-to-target">All Football Products</button></li>
+                    </ul>
+                  </div>
+                  <div class="col-3 items">
+                    <button data-target="men-sports-motorSport" class="nav-link go-to-target"><span> Motor Sport</span></button>
+                    <ul class="list-unstyled mb-0 mt-2" >
+                      <li><button data-target="sports-motorSport-bmw" class="nav-link go-to-target">BNW Motor Sport</button></li>
+                      <li><button data-target="sports-motorSport-mercedesAmg" class="nav-link go-to-target">Mercedes AMG Petronas</button></li>
+                      <li><button data-target="sports-motorSport-porscheDesign" class="nav-link go-to-target">Porsche Design</button></li>
+                      <li><button data-target="sports-motorSport-porscheLegacy" class="nav-link go-to-target">Porsche</button></li>
+                      <li><button data-target="sports-motorSport-ferrari" class="nav-link go-to-target">Scuderia Ferrari</button></li>
+                      <li><button data-target="sports-motorSport-speedCat" class="nav-link go-to-target">Speedcat</button></li>
+                      <li><button data-target="sports-motorSport" class="nav-link go-to-target">All Motor Sport Products</button></li>
+                    </ul>
+                  </div>
+                  <div class="col-3 items">
+                    <button data-target="sports-fitness" class="nav-link go-to-target"><span>Fitness and Training</span></button>
+                    <ul class="list-unstyled mb-0 mt-2" >
+                      <li><button" data-target="sports-fitness-gem" class="nav-link go-to-target">Gym Styles</button></li>
+                      <li><button" data-target="sports-fitness-yoga" class="nav-link go-to-target">Yoga</button></li>
+                      <li><button" data-target="sports-fitness-modest" class="nav-link go-to-target">Modest Activewear</button></li>
+                      <li><button" data-target="sports-fitness-gemAcc" class="nav-link go-to-target">Gym Accessories</button></li>
+                      <li><button" data-target="sports-fitness" class="nav-link go-to-target">All Fitness and Training</button></li>
+                    </ul>
+                  </div>
+                  <div class="col-3 items">
+                    <button data-target="sports-running" class="nav-link go-to-target"><span>Running</span></button>
+                    <ul class="list-unstyled mb-0 mt-2" >
+                      <li><button data-target="sports-running-nitro" class="nav-link go-to-target">Nitro</button></li>
+                      <li><button data-target="sports-running-roodRunning" class="nav-link go-to-target">Road Running Shoes</button></li>
+                      <li><button data-target="sports-running" class="nav-link go-to-target">All Running Products</button></li>
+                    </ul>
+                  </div>
+                  <div class="col-3 items">
+                    <button data-target="sports-basketball" class="nav-link go-to-target"><span>BasketBall</span></button>
+                    <ul class="list-unstyled mb-0 mt-2" >
+                      <li><button data-target="sports-basketball-basketballapparel" class="nav-link go-to-target">BasketBall Apparel</button></li>
+                      <li><button data-target="sports-basketball-meloBall" class="nav-link go-to-target">LaMelo Ball</button></li>
+                      <li><button data-target="sports-basketball" class="nav-link go-to-target">All BasketBall Products</button></li>
+                    </ul>
+                  </div>
+                  <div class="col-3 items">
+                    <button data-target="sports-othorSport" class="nav-link go-to-target"><span>Other Sports</span></button>
+                    <ul class="list-unstyled mb-0 mt-2" >
+                      <li><button data-target="sports-othorSport-swimwear" class="nav-link go-to-target">Swimwear</button></li>
+                      <li><button data-target="sports-othorSport-sportEquipment" class="nav-link go-to-target">Sport Equipment </button></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="nav-item m-auto m-lg-0">
+              <button data-target="sale" class="nav-link main go-to-target">Sale</button>
+              <div class="menu">
+                <div class="row justify-content-center">
+                  <div class="col-3 items">
+                    <button data-target="sale-women" class="nav-link go-to-target"><span>Women</span></button>
+                    <ul class="list-unstyled mb-0 mt-2" >
+                      <li><button data-target="sale-women-shoes" class="nav-link go-to-target">FootWear</button></li>
+                      <li><button data-target="sale-women-clothing" class="nav-link go-to-target">Clothing</button></li>
+                      <li><button data-target="sale-women-accessories" class="nav-link go-to-target">Accessories</button></li>
+                    </ul>
+                  </div>
+                  <div class="col-3 items">
+                    <button data-target="sale-men" class="nav-link go-to-target"><span>Men</span></button>
+                    <ul class="list-unstyled mb-0 mt-2" >
+                      <li><button data-target="sale-men-shoes" class="nav-link go-to-target">FootWear</button></li>
+                      <li><button data-target="sale-men-clothing" class="nav-link go-to-target">Clothing</button></li>
+                      <li><button data-target="sale-men-accessories" class="nav-link go-to-target">Accessories</button></li>
+                    </ul>
+                  </div>
+                  <div class="col-3 items">
+                    <button data-target="sale-kids" class="nav-link go-to-target"><span>Kids</span></button>
+                    <ul class="list-unstyled mb-0 mt-2" >
+                      <li><button data-target="sale-kids-shoes" class="nav-link go-to-target">FootWear</button></li>
+                      <li><button data-target="sale-kids-clothing" class="nav-link go-to-target">Clothing</button></li>
+                      <li><button data-target="sale-kids-accessories" class="nav-link go-to-target">Accessories</button></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <form class="d-flex position-relative search-box mb-0">
+            <input class="form-control me-2" type="search" id="search-box" placeholder="SEARCH PUMA.COM">
+            <label for="search-box" id="search-icon"><i class="bi bi-search"></i></label>
+          </form>
+        </div>
+        <ul class="list-unstyled mb-0 d-flex last-list" >
+          <li class="py-1 px-2 position-relative" id="favCount">
+            <span class="badge"></span>
+            <a href="favorites.html" id="fav-btn">
+              <i class="bi bi-heart fs-5"></i>
+            </a>
+          </li>
+          <li class="py-1 px-2 position-relative" id="cartCount">
+            <span class="badge"></span>
+            <button id="GoToCart" data-target="cartOffcanvas">
+              <i class="bi bi-cart fs-5"></i>
+            </button>
+          </li>
+          <li class="py-1 px-2">
+            <a href="personal.html" id="personal"><i class="bi bi-person fs-4"></i></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- end navbar desktop -->
+    <!-- start navbar mobile -->
+    <div class="mobile-nav">
+      <div class="tab-btns" >
+        <ul class="list-unstyled mb-0 nav-mob">
+          <li class="nav-item"><button class="nav-link" data-target="women" >Women <i class="bi bi-chevron-right"></i> </button></li>
+          <li class="nav-item"><button class="nav-link" data-target="man" >Men <i class="bi bi-chevron-right"></i></button></li>
+          <li class="nav-item"><button class="nav-link" data-target="kids" >Kids <i class="bi bi-chevron-right"></i></button></li>
+          <li class="nav-item"><button class="nav-link" data-target="collections" >Collections <i class="bi bi-chevron-right"></i></button></li>
+          <li class="nav-item"><button class="nav-link" data-target="sports" >Sports <i class="bi bi-chevron-right"></i></button></li>
+          <li class="nav-item"><button class="nav-link" data-target="sale" >Sale <i class="bi bi-chevron-right"></i></button></li>
+        </ul>
+      </div>
+      <div class="tab-body ">
+        <div class="tab-content" id="women">
+          <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button> Women</div>
+          <ul class="list-unstyled mb-0 nav-mob">
+            <li class="nav-item"><button class="nav-link" data-target="women-shoes" >Shoes <i class="bi bi-chevron-right"></i> </button></li>
+            <li class="nav-item"><button class="nav-link" data-target="women-clothing" >Clothing <i class="bi bi-chevron-right"></i></button></li>
+            <li class="nav-item"><button class="nav-link" data-target="women-accessories" >Accessories <i class="bi bi-chevron-right"></i></button></li>
+            <li class="nav-item"><button class="nav-link" data-target="women-sports" >Sports <i class="bi bi-chevron-right"></i></button></li>
+          </ul>
+          <ul class="list-unstyled mb-0 pt-0 nav-mob border-0" >
+            <li class="nav-item"><button data-target="women-new" class="nav-link go-to-target">New Arrivals</button></li>
+            <li class="nav-item"><button data-target="women-75" class="nav-link go-to-target">PUMA 75 Anniversary</button></li>
+            <li class="nav-item"><button data-target="women-slipstream" class="nav-link go-to-target">Slipstream</button></li>
+            <li class="nav-item"><button data-target="women-sustainable" class="nav-link go-to-target">Sustainable Fashion</button></li>
+            <li class="nav-item"><button data-target="women-classics" class="nav-link go-to-target">Classics</button></li>
+            <li class="nav-item"><button data-target="women-mayze" class="nav-link go-to-target">Mayze</button></li>
+            <li class="nav-item"><button data-target="women-cali" class="nav-link go-to-target">Cali</button></li>
+            <li class="nav-item"><button data-target="women-suede" class="nav-link go-to-target">Suede</button></li>
+            <li class="nav-item"><button data-target="women-nitro" class="nav-link go-to-target">Nitro</button></li>
+            <li class="nav-item"><button data-target="women-sale" class="nav-link go-to-target">Sale</button></li>
+          </ul>
+        </div>
+        <div class="tab-content" id="man">
+          <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button> Men</div>
+          <ul class="list-unstyled mb-0 nav-mob">
+            <li class="nav-item"><button class="nav-link" data-target="men-shoes" >Shoes <i class="bi bi-chevron-right"></i> </button></li>
+            <li class="nav-item"><button class="nav-link" data-target="men-clothing" >Clothing <i class="bi bi-chevron-right"></i></button></li>
+            <li class="nav-item"><button class="nav-link" data-target="men-accessories" >Accessories <i class="bi bi-chevron-right"></i></button></li>
+            <li class="nav-item"><button class="nav-link" data-target="men-sports" >Sports <i class="bi bi-chevron-right"></i></button></li>
+          </ul>
+          <ul class="list-unstyled mb-0 pt-0 nav-mob border-0" >
+            <li class="nav-item"><button data-target="men-new" class="nav-link go-to-target">New Arrivals</button></li>
+            <li class="nav-item"><button data-target="men-75" class="nav-link go-to-target">PUMA 75 Anniversary</button></li>
+            <li class="nav-item"><button data-target="men-slipstream" class="nav-link go-to-target">Slipstream</button></li>
+            <li class="nav-item"><button data-target="men-nitro" class="nav-link go-to-target">Nitro</button></li>
+            <li class="nav-item"><button data-target="men-sustainable" class="nav-link go-to-target">Sustainable Fashion</button></li>
+            <li class="nav-item"><button data-target="men-classic" class="nav-link go-to-target">Classics</button></li>
+            <li class="nav-item"><button data-target="men-motorSport" class="nav-link go-to-target">Motor sport</button></li>
+            <li class="nav-item"><button data-target="men-sale" class="nav-link go-to-target">Sale</button></li>
+          </ul>
+        </div>
+        <div class="tab-content" id="kids">
+          <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button> Kids</div>
+          <ul class="list-unstyled mb-0 nav-mob">
+            <li class="nav-item"><button class="nav-link" data-target="kids-boys" >Boys <i class="bi bi-chevron-right"></i> </button></li>
+            <li class="nav-item"><button class="nav-link" data-target="kids-girls" >Girls <i class="bi bi-chevron-right"></i></button></li>
+            <li class="nav-item"><button class="nav-link" data-target="kids-collections" >Collections <i class="bi bi-chevron-right"></i></button></li>
+          </ul>
+          <ul class="list-unstyled mb-0 pt-0 nav-mob border-0" >
+            <li class="nav-item"><button data-target="kids-new" class="nav-link go-to-target">New Arrivals</button></li>
+            <li class="nav-item"><button data-target="kids-sale" class="nav-link go-to-target">Sale</button></li>
+          </ul>
+        </div>
+        <div class="tab-content" id="collections">
+          <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button> Collections</div>
+          <ul class="list-unstyled mb-0 nav-mob">
+            <li class="nav-item"><button class="nav-link" data-target="collections-select" >SELECT <i class="bi bi-chevron-right"></i> </button></li>
+            <li class="nav-item"><button class="nav-link" data-target="collections-lifestyle" >Lifestyle <i class="bi bi-chevron-right"></i></button></li>
+          </ul>
+        </div>
+        <div class="tab-content" id="sports">
+          <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button> Sports</div>
+          <ul class="list-unstyled mb-0 nav-mob">
+            <li class="nav-item"><button class="nav-link" data-target="sports-football" >Football <i class="bi bi-chevron-right"></i> </button></li>
+            <li class="nav-item"><button class="nav-link" data-target="sports-motor-sport" >Motor sport <i class="bi bi-chevron-right"></i></button></li>
+            <li class="nav-item"><button class="nav-link" data-target="sports-Fitness-and-Training" >Fitness and Training <i class="bi bi-chevron-right"></i></button></li>
+            <li class="nav-item"><button class="nav-link" data-target="sports-running" >Running <i class="bi bi-chevron-right"></i> </button></li>
+            <li class="nav-item"><button class="nav-link" data-target="sports-basketball" >Basketball <i class="bi bi-chevron-right"></i> </button></li>
+            <li class="nav-item"><button class="nav-link" data-target="sports-other-sports" >Other Sports <i class="bi bi-chevron-right"></i> </button></li>
+          </ul>
+        </div>
+        <div class="tab-content" id="sale">
+          <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button> Sale</div>
+          <ul class="list-unstyled mb-0 nav-mob">
+            <li class="nav-item"><button class="nav-link" data-target="sale-women" >Women <i class="bi bi-chevron-right"></i> </button></li>
+            <li class="nav-item"><button class="nav-link" data-target="sale-men" >Men <i class="bi bi-chevron-right"></i> </button></li>
+            <li class="nav-item"><button class="nav-link" data-target="sale-kids" >Kids<i class="bi bi-chevron-right"></i> </button></li>
+          </ul>
+        </div>
+        <div class="tab-body" women="true">
+          <div class="tab-content" id="women-shoes">
+            <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button> Shoes</div>
+            <ul class="list-unstyled mb-0 nav-mob border-0" >
+              <li class="nav-item"><button data-target="women-shoes-sneakers" class="nav-link go-to-target">Sneakers</button></li>
+              <li class="nav-item"><button data-target="women-shoes-running" class="nav-link go-to-target">Running</button></li>
+              <li class="nav-item"><button data-target="women-shoes-training" class="nav-link go-to-target">Training</button></li>
+              <li class="nav-item"><button data-target="women-shoes-sandals" class="nav-link go-to-target">Slides and Sandals</button></li>
+              <li class="nav-item"><button data-target="women-shoes-motorSport" class="nav-link go-to-target">Motor Sport</button></li>
+              <li class="nav-item"><button data-target="women-shoes-football" class="nav-link go-to-target">Football</button></li>
+            </ul>
+          </div>
+          <div class="tab-content" id="women-clothing">
+            <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button> Clothing</div>
+            <ul class="list-unstyled mb-0 nav-mob border-0" >
+              <li class="nav-item"><button data-target="women-clothing-leggings" class="nav-link go-to-target">Leggings</button></li>
+              <li class="nav-item"><button data-target="women-clothing-shirts" class="nav-link go-to-target">T-Shirts & Tops</button></li>
+              <li class="nav-item"><button data-target="women-clothing-hoodie" class="nav-link go-to-target">Sweatshirts & Hoodies</button></li>
+              <li class="nav-item"><button data-target="women-clothing-jackets" class="nav-link go-to-target">Jackets</button></li>
+              <li class="nav-item"><button data-target="women-clothing-pants" class="nav-link go-to-target">Pants & Joggers</button></li>
+              <li class="nav-item"><button data-target="women-clothing-tracksuit" class="nav-link go-to-target">Tracksuits</button></li>
+              <li class="nav-item"><button data-target="women-clothing-short" class="nav-link go-to-target">Shorts</button></li>
+              <li class="nav-item"><button data-target="women-clothing-dresses" class="nav-link go-to-target">Dresses & Skirts</button></li>
+              <li class="nav-item"><button data-target="women-clothing-jerseys" class="nav-link go-to-target">Jerseys</button></li>
+            </ul>
+          </div>
+          <div class="tab-content" id="women-accessories">
+            <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button> Accessories</div>
+            <ul class="list-unstyled mb-0 nav-mob border-0" >
+              <li class="nav-item"><button data-target="women-accessories-backPacks" class="nav-link go-to-target">Backpack</button></li>
+              <li class="nav-item"><button data-target="women-accessories-bags" class="nav-link go-to-target">Bags</button></li>
+              <li class="nav-item"><button data-target="women-accessories-hats" class="nav-link go-to-target">Hats & Headwear</button></li>
+              <li class="nav-item"><button data-target="women-accessories-glovs" class="nav-link go-to-target">Gloves</button></li>
+              <li class="nav-item"><button data-target="women-accessories-shoeCar" class="nav-link go-to-target">Shoe Care</button></li>
+              <li class="nav-item"><button data-target="women-accessories-wallets" class="nav-link go-to-target">Wallet</button></li>
+            </ul>
+          </div>
+          <div class="tab-content" id="women-sports">
+            <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button> Sports</div>
+            <ul class="list-unstyled mb-0 nav-mob border-0" >
+              <li class="nav-item"><button data-target="women-sports-running" class="nav-link go-to-target">Running</button></li>
+              <li class="nav-item"><button data-target="women-sports-training" class="nav-link go-to-target">Training</button></li>
+              <li class="nav-item"><button data-target="women-sports-yoga" class="nav-link go-to-target">Yoga</button></li>
+              <li class="nav-item"><button data-target="women-sports-football" class="nav-link go-to-target">Football</button></li>
+              <li class="nav-item"><button data-target="women-sports-motorSport" class="nav-link go-to-target">Motor sport</button></li>
+              <li class="nav-item"><button data-target="women-sports-basketball" class="nav-link go-to-target">Basketball</button></li>
+            </ul>
+          </div>
+        </div>
+        <div class="tab-body" man="true">
+          <div class="tab-content" id="men-shoes">
+            <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button> Shoes</div>
+            <ul class="list-unstyled mb-0 nav-mob border-0" >
+              <li class="nav-item"><button data-target="men-shoes-sneakers" class="nav-link go-to-target">Sneakers</button></li>
+              <li class="nav-item"><button data-target="men-shoes-running" class="nav-link go-to-target">Running</button></li>
+              <li class="nav-item"><button data-target="men-shoes-football" class="nav-link go-to-target">Football</button></li>
+              <li class="nav-item"><button data-target="men-shoes-training" class="nav-link go-to-target">Training</button></li>
+              <li class="nav-item"><button data-target="men-shoes-basketball" class="nav-link go-to-target">Basketball</button></li>
+              <li class="nav-item"><button data-target="men-shoes-motorSport" class="nav-link go-to-target">Motor Sport</button></li>
+              <li class="nav-item"><button data-target="men-shoes-sandals" class="nav-link go-to-target">Slides and Sandals</button></li>
+            </ul>
+          </div>
+          <div class="tab-content" id="men-clothing">
+            <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button> Clothing</div>
+            <ul class="list-unstyled mb-0 nav-mob border-0" >
+              <li class="nav-item"><button data-target="men-clothing-hoodie" class="nav-link go-to-target">Sweatshirts & Hoodies</button></li>
+              <li class="nav-item"><button data-target="men-clothing-shirts" class="nav-link go-to-target">T-Shirts & Tops</button></li>
+              <li class="nav-item"><button data-target="men-clothing-pants" class="nav-link go-to-target">Pants & Joggers</button></li>
+              <li class="nav-item"><button data-target="men-clothing-jackets" class="nav-link go-to-target">Jackets</button></li>
+              <li class="nav-item"><button data-target="men-clothing-jerseys" class="nav-link go-to-target">Jerseys</button></li>
+              <li class="nav-item"><button data-target="men-clothing-short" class="nav-link go-to-target">Shorts</button></li>
+              <li class="nav-item"><button data-target="men-clothing-polo" class="nav-link go-to-target">Polos</button></li>
+            </ul>
+          </div>
+          <div class="tab-content" id="men-accessories">
+            <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button> Accessories</div>
+            <ul class="list-unstyled mb-0 nav-mob border-0" >
+              <li class="nav-item"><button data-target="men-accessories-bags" class="nav-link go-to-target">Bags</button></li>
+              <li class="nav-item"><button data-target="men-accessories-backPacks" class="nav-link go-to-target">Backpack</button></li>
+              <li class="nav-item"><button data-target="men-accessories-hats" class="nav-link go-to-target">Hats</button></li>
+              <li class="nav-item"><button data-target="men-accessories-sportEquipment" class="nav-link go-to-target">Sport Equipment</button></li>
+              <li class="nav-item"><button data-target="men-accessories-balls" class="nav-link go-to-target">Balls</button></li>
+              <li class="nav-item"><button data-target="men-accessories-shoeCare" class="nav-link go-to-target">Shoe Care</button></li>
+              <li class="nav-item"><button data-target="men-accessories-glovs" class="nav-link go-to-target">Gloves</button></li>
+            </ul>
+          </div>
+          <div class="tab-content" id="men-sports">
+            <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button> Sports</div>
+            <ul class="list-unstyled mb-0 nav-mob border-0" >
+              <li class="nav-item"><button data-target="men-sports-running" class="nav-link go-to-target">Running</button></li>
+              <li class="nav-item"><button data-target="men-sports-football" class="nav-link go-to-target">Football</button></li>
+              <li class="nav-item"><button data-target="men-sports-basketball" class="nav-link go-to-target">Basketball</button></li>
+              <li class="nav-item"><button data-target="men-sports-training" class="nav-link go-to-target">Training</button></li>
+              <li class="nav-item"><button data-target="men-sports-swimwear" class="nav-link go-to-target">Swimwear</button></li>
+              <li class="nav-item"><button data-target="men-sports-motorSport" class="nav-link go-to-target">Motor sport</button></li>
+              <li class="nav-item"><button data-target="men-sports-yoga" class="nav-link go-to-target">Yoga</button></li>
+            </ul>
+          </div>
+        </div>
+        <div class="tab-body" kids="true">
+          <div class="tab-content" id="kids-boys">
+            <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button> Boys</div>
+            <ul class="list-unstyled mb-0 pb-4 nav-mob border-0" >
+              <li class="nav-item"><button data-target="kids-boys-shoes" class="nav-link go-to-target">Shoes</button></li>
+              <li class="nav-item"><button data-target="kids-boys-clothing" class="nav-link go-to-target">Clothing</button></li>
+              <li class="nav-item"><button data-target="kids-boys-accessories" class="nav-link go-to-target">Accessories</button></li>
+              <li class="nav-item"><button data-target="kids-boys-football" class="nav-link go-to-target">Football</button></li>
+            </ul>
+          </div>
+          <div class="tab-content" id="kids-girls">
+            <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button> Girls</div>
+            <ul class="list-unstyled mb-0 pb-4 nav-mob border-0" >
+              <li class="nav-item"><button data-target="kids-girls-shoes" class="nav-link go-to-target">Shoes</button></li>
+              <li class="nav-item"><button data-target="kids-girls-clothing" class="nav-link go-to-target">Clothing</button></li>
+              <li class="nav-item"><button data-target="kids-girls-accessories" class="nav-link go-to-target">Accessories</button></li>
+            </ul>
+          </div>
+          <div class="tab-content" id="kids-collections">
+            <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button> Collections</div>
+            <ul class="list-unstyled mb-0 pb-4 nav-mob border-0" >
+              <li class="nav-item"><button data-target="kids-collections-pokemon" class="nav-link go-to-target">PUMA X POKEMON</button></li>
+              <li class="nav-item"><button data-target="kids-collections-cottons" class="nav-link go-to-target">PIMA X TINYCOTTONS</button></li>
+              <li class="nav-item"><button data-target="kids-collections-fandom" class="nav-link go-to-target">FANDOM</button></li>
+              <li class="nav-item"><button data-target="kids-collections-cali" class="nav-link go-to-target">Cali</button></li>
+              <li class="nav-item"><button data-target="kids-collections-motorSport" class="nav-link go-to-target">Motor sport</button></li>
+              <li class="nav-item"><button data-target="kids-collections-riderPack" class="nav-link go-to-target">PUMA Rider Pack</button></li>
+            </ul>
+          </div>
+        </div>
+        <div class="tab-body" collections="true">
+          <div class="tab-content" id="collections-select">
+            <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button> SELECT</div>
+            <ul class="list-unstyled mb-0 pb-4 nav-mob border-0" >
+              <li class="nav-item"><button  data-target="collections-select-ami" class="nav-link go-to-target">PUMA x AMI</button></li>
+              <li class="nav-item"><button  data-target="collections-select-pam" class="nav-link go-to-target">PUMA x PAM</button></li>
+              <li class="nav-item"><button  data-target="collections-select-mmq" class="nav-link go-to-target">MMQ</button></li>
+              <li class="nav-item"><button  data-target="collections-select-inland" class="nav-link go-to-target">INLAND</button></li>
+              <li class="nav-item"><button  data-target="collections-select-players" class="nav-link go-to-target">PLAYERS LOUNGE</button></li>
+              <li class="nav-item"><button  data-target="collections-select-trinomic" class="nav-link go-to-target">Trinomic</button></li>
+              <li class="nav-item"><button  data-target="collections-select-trackmeet" class="nav-link go-to-target">TRACK MEET</button></li>
+            </ul>
+          </div>
+          <div class="tab-content" id="collections-lifestyle">
+            <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button> Lifestyle</div>
+            <ul class="list-unstyled mb-0 pb-4 nav-mob border-0" >
+              <li class="nav-item"><button data-target="collections-lifestyle-davido" class="nav-link go-to-target">PUMA X DAVIDO</button></li>
+              <li class="nav-item"><button data-target="collections-lifestyle-spongeBob" class="nav-link go-to-target">PUMA X SPONGEBOB</button></li>
+              <li class="nav-item"><button data-target="collections-lifestyle-cocaCola" class="nav-link go-to-target">PUMA X COCA COLA</button></li>
+              <li class="nav-item"><button data-target="collections-lifestyle-njr" class="nav-link go-to-target">PUMA X NJR</button></li>
+              <li class="nav-item"><button data-target="collections-lifestyle-pokemon" class="nav-link go-to-target">PUMA X POKEMON</button></li>
+              <li class="nav-item"><button data-target="collections-lifestyle-vogue" class="nav-link go-to-target">PUMA X VOGUE</button></li>
+              <li class="nav-item"><button data-target="collections-lifestyle-ragged" class="nav-link go-to-target">PUMA X RAGGED PRIEST</button></li>
+              <li class="nav-item"><button data-target="collections-lifestyle-caPro" class="nav-link">CA Pro</button></li>
+              <li class="nav-item"><button data-target="collections-lifestyle-mayze" class="nav-link">Mayze</button></li>
+              <li class="nav-item"><button data-target="collections-lifestyle-slipstream" class="nav-link">Slipstream</button></li>
+              <li class="nav-item"><button data-target="collections-lifestyle-cali" class="nav-link">Cali</button></li>
+              <li class="nav-item"><button data-target="collections-lifestyle-mirage" class="nav-link">Mirage</button></li>
+              <li class="nav-item"><button data-target="collections-lifestyle-riderPack" class="nav-link">PUMA Rider Pack</button></li>
+              <li class="nav-item"><button data-target="collections-lifestyle-collection" class="nav-link">RS-Collection</button></li>
+              <li class="nav-item"><button data-target="collections-lifestyle-suede" class="nav-link">Suede</button></li>
+              <li class="nav-item"><button data-target="collections-lifestyle-sustainable" class="nav-link">Sustainable Fashion</button></li>
+              <li class="nav-item"><button data-target="collections-lifestyle-smash" class="nav-link">Smash</button></li>
+            </ul>
+          </div>
+        </div>
+        <div class="tab-body" sports="true">
+          <div class="tab-content" id="sports-football">
+            <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button> Football</div>
+            <ul class="list-unstyled mb-0 pb-4 nav-mob border-0" >
+              <li class="nav-item"><button data-target="sports-football-footballBoots" class="nav-link go-to-target">Football Boots</button></li>
+              <li class="nav-item"><button data-target="sports-football-footballApparel" class="nav-link go-to-target">Football Apparel</button></li>
+              <li class="nav-item"><button data-target="sports-football-nationalTeam" class="nav-link go-to-target">National Teams</button></li>
+              <li class="nav-item"><button data-target="sports-football-footballClubs" class="nav-link go-to-target">Football Clubs</button></li>
+              <li class="nav-item"><button data-target="sports-football-egypt" class="nav-link go-to-target">Egypt</button></li>
+              <li class="nav-item"><button data-target="sports-football-morocco" class="nav-link go-to-target">Morocco</button></li>
+              <li class="nav-item"><button data-target="sports-football-olumpique" class="nav-link go-to-target">Olympique de Marseille</button></li>
+              <li class="nav-item"><button data-target="sports-football-milan" class="nav-link go-to-target">AC Milan</button></li>
+              <li class="nav-item"><button data-target="sports-football" class="nav-link go-to-target">All Football Products</button></li>
+            </ul>
+          </div>
+          <div class="tab-content" id="sports-motor-sport">
+            <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button> Motor Sport</div>
+            <ul class="list-unstyled mb-0 pb-4 nav-mob border-0" >
+              <li class="nav-item"><button data-target="sports-motorSport-bmw" class="nav-link go-to-target">BMW Motor sport</button></li>
+              <li class="nav-item"><button data-target="sports-motorSport-mercedesAmg" class="nav-link go-to-target">Mercedes AMG Petronas</button></li>
+              <li class="nav-item"><button data-target="sports-motorSport-porscheDesign" class="nav-link go-to-target">Porsche Design</button></li>
+              <li class="nav-item"><button data-target="sports-motorSport-porscheLegacy" class="nav-link go-to-target">Porsche Legacy</button></li>
+              <li class="nav-item"><button data-target="sports-motorSport-ferrari" class="nav-link go-to-target">Scuderia Ferrari</button></li>
+              <li class="nav-item"><button data-target="sports-motorSport-speedCat" class="nav-link go-to-target">Speedcat</button></li>
+              <li class="nav-item"><button data-target="sports-motorSport" class="nav-link go-to-target"> All Motor sport Products</button></li>
+            </ul>
+          </div>
+          <div class="tab-content" id="sports-Fitness-and-Training">
+            <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button> Fitness and Training</div>
+            <ul class="list-unstyled mb-0 pb-4 nav-mob border-0" >
+              <li class="nav-item"><button data-target="sports-fitness-gem" class="nav-link go-to-target">Gym Styles</button></li>
+              <li class="nav-item"><button data-target="sports-fitness-yoga" class="nav-link go-to-target">Yoga</button></li>
+              <li class="nav-item"><button data-target="sports-fitness-modest" class="nav-link go-to-target">Modest Activewear</button></li>
+              <li class="nav-item"><button data-target="sports-fitness-gemAcc" class="nav-link go-to-target">Gym Accessories</button></li>
+              <li class="nav-item"><button data-target="sports-fitness" class="nav-link go-to-target">All Fitness and Training Products</button></li>
+            </ul>
+          </div>
+          <div class="tab-content" id="sports-running">
+            <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button>Running</div>
+            <ul class="list-unstyled mb-0 pb-4 nav-mob border-0" >
+              <li class="nav-item"><button data-target="sports-running-nitro" class="nav-link go-to-target">Nitro</button></li>
+              <li class="nav-item"><button data-target="sports-running-roodRunning" class="nav-link go-to-target">Road Running shoes</button></li>
+              <li class="nav-item"><button data-target="sports-running" class="nav-link go-to-target">All Running Products</button></li>
+            </ul>
+          </div>
+          <div class="tab-content" id="sports-basketball">
+            <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button>Basketball</div>
+            <ul class="list-unstyled mb-0 pb-4 nav-mob border-0" >
+              <li class="nav-item"><button data-target="sports-basketball-basketballapparel" class="nav-link go-to-target">Basketball Apparel</button></li>
+              <li class="nav-item"><button data-target="sports-basketball-meloBall" class="nav-link go-to-target">LaMelo Ball</button></li>
+              <li class="nav-item"><button data-target="sports-basketball" class="nav-link go-to-target">All Basketball Products</button></li>
+            </ul>
+          </div>
+          <div class="tab-content" id="sports-other-sports">
+            <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button>Other Sports</div>
+            <ul class="list-unstyled mb-0 pb-4 nav-mob border-0" >
+              <li class="nav-item"><button data-target="sports-othorSport-swimwear" class="nav-link go-to-target">Swimwear</button></li>
+              <li class="nav-item"><button data-target="sports-othorSport-sportEquipment" class="nav-link go-to-target">Sport Equipment</button></li>
+            </ul>
+          </div>
+        </div>
+        <div class="tab-body" sale="true">
+          <div class="tab-content" id="sale-women">
+            <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button> Women</div>
+            <ul class="list-unstyled mb-0 pb-4 nav-mob border-0" >
+              <li class="nav-item"><button data-target="sale-women-shoes" class="nav-link go-to-target">Footwear</button></li>
+              <li class="nav-item"><button data-target="sale-women-clothing" class="nav-link go-to-target">Clothing</button></li>
+              <li class="nav-item"><button data-target="sale-women-accessories" class="nav-link go-to-target">Accessories</button></li>
+            </ul>
+          </div>
+          <div class="tab-content" id="sale-men">
+            <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button> Men</div>
+            <ul class="list-unstyled mb-0 pb-4 nav-mob border-0" >
+              <li class="nav-item"><button data-target="sale-men-shoes" class="nav-link go-to-target">Footwear</button></li>
+              <li class="nav-item"><button data-target="sale-men-clothing" class="nav-link go-to-target">Clothing</button></li>
+              <li class="nav-item"><button data-target="sale-men-accessories" class="nav-link go-to-target">Accessories</button></li>
+            </ul>
+          </div>
+          <div class="tab-content" id="sale-kids">
+            <div class="mob-head"><button class=" btn position-absolute start-0 translate-middle-y top-50 ps-4 previous" ><i class="bi bi-chevron-left fs-5"></i></button> Kids</div>
+            <ul class="list-unstyled mb-0 pb-4 nav-mob border-0" >
+              <li class="nav-item"><button data-target="sale-kids-shoes" class="nav-link go-to-target">Footwear</button></li>
+              <li class="nav-item"><button data-target="sale-kids-clothing" class="nav-link go-to-target">Clothing</button></li>
+              <li class="nav-item"><button data-target="sale-kids-accessories" class="nav-link go-to-target">Accessories</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end navbar mobile -->
+  </header>
+  <!-- end nav bar -->
+  <!-- start main -->
+  <main>
+    <!-- start banner  -->
+    <section class="banner" >
+      <div class="loading-banner"><span></span> <span></span> <span></span></div>
+      <div class="container-fluid p-0">
+        <div class="banner-body">
+          <button data-target="trackmeet" class="go-to-target" >
+            <img src="./assets/image/banner/home1.webp" class="img-fluid banner-img--desktop" alt="">
+            <img src="./assets/image/banner/banner mob/homemob1.webp" class="img-fluid d-none banner-img--mob" alt="">
+          </button>
+          <div class="banner-content text-white">
+            <div class="banner-content-head">
+              <h2>track meet</h2>
+            </div>
+            <div class="banner-content-text" >
+              <h2>Track-inspired style</h2>
+            </div>
+            <button data-target="trackmeet" class="go-to-target btn main-btn main-btn--white banner-content-btn">shop now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end banner  -->
+    <!-- start show 4 products  -->
+    <section class="show-products" >
+      <div class="container-fluid p-0">
+        <div class="show-products-head">
+          <h2>SHOP THE COLLECTION</h2>
+        </div>
+        <div class="products trackmeet fourProducts">
+          <div class="loading-banner"><span></span> <span></span> <span></span></div>
+        </div>
+      </div>
+    </section>
+    <!-- end show 4 products  -->
+    <!-- start banner  -->
+    <section class="banner" >
+      <div class="loading-banner"><span></span> <span></span> <span></span></div>
+      <div class="container-fluid p-0">
+        <div class="banner-body">
+          <button data-target="inland" class="go-to-target" >
+            <img src="./assets/image/banner/home2.webp" class="img-fluid banner-img--desktop" alt="">
+            <img src="./assets/image/banner/banner mob/homemob2.webp" class="img-fluid d-none banner-img--mob" alt="">
+          </button>
+          <div class="banner-content text-white start-50 translate-middle m-0 text-center">
+            <div class="banner-content-head">
+              <h2>inland sport</h2>
+            </div>
+            <div class="banner-content-text" >
+              <h2>beyond classics</h2>
+            </div>
+            <button data-target="inland" class="go-to-target btn main-btn main-btn--white banner-content-btn">shop now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end banner  -->
+    <!-- start show 4 products  -->
+    <section class="show-products" >
+      <div class="container-fluid p-0">
+        <div class="show-products-head">
+          <h2>explore more</h2>
+        </div>
+        <div class="products inland fourProducts">
+          <div class="loading-banner"><span></span> <span></span> <span></span></div>
+        </div>
+      </div>
+    </section>
+    <!-- end show 4 products  -->
+    <!-- start show 3 products  -->
+    <section class="show-products">
+      <div class="container-fluid p-0">
+        <div class="show-products-head text-center">
+          <h2>TRENDING NOW</h2>
+        </div>
+        <div class="products threeitems">
+          <div class="loading-banner"><span></span> <span></span> <span></span></div>
+          <div class="product">
+            <button data-target="collections-lifestyle-mayze" class="btn go-to-target"></button>
+              <div class="product-img">
+                <img src="./assets/image/postars/posterHome1.webp" class="img-fluid" alt="">
+              </div>
+              <div class=" product-info flex-column">
+                <div class="product-head"><h3>mayze stack</h3></div>
+                <div class="product-text"><h3>Worn by Dua Lipa</h3></div>
+                <button data-target="collections-lifestyle-mayze" class="go-to-target btn main-btn main-btn--dark">shop now</button>
+              </div>
+          </div>
+          <div class="product">
+            <button data-target="collections-lifestyle-cali" class="go-to-target"></button>
+              <div class="product-img">
+                <img src="./assets/image/postars/posterHome2.webp" class="img-fluid" alt="">
+              </div>
+              <div class="product-info flex-column">
+                <div class="product-head"><h3>cali dream</h3></div>
+                <div class="product-text"><h3>bold and dreamy</h3></div>
+                <button data-target="collections-lifestyle-cali" class="go-to-target btn main-btn main-btn--dark">shop now</button>
+              </div>
+          </div>
+          <div class="product">
+            <button data-target="sports-motorSport-bmw" class="btn go-to-target"></button>
+              <div class="product-img">
+                <img src="./assets/image/postars/posterHome3.jpg" class="img-fluid" alt="">
+              </div>
+              <div class=" product-info flex-column ">
+                <div class="product-head"><h3>PUMA X BMW M MOTORSPORT</h3></div>
+                <div class="product-text"><h3>forever a rebel</h3></div>
+                <button data-target="sports-motorSport-bmw" class="go-to-target btn main-btn main-btn--dark">shop now</button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end show 3 products  -->
+    <!-- start show 3 products  -->
+    <section class="show-products">
+      <div class="container-fluid p-0">
+        <div class="show-products-head text-center">
+          <h2>SHOPPING FOR SOMEONE?</h2>
+        </div>
+        <div class="products threeitems">
+          <div class="loading-banner"><span></span> <span></span> <span></span></div>
+          <div class="product">
+            <a href="women.html">
+              <div class="product-img">
+                <img src="./assets/image/postars/posterHome4.jpg" class="img-fluid" alt="">
+              </div>
+              <div class=" product-info flex-column">
+                <div class="product-head"><h3>women's</h3></div>
+                <a href="women.html" class="btn main-btn main-btn--dark">shop now</a>
+              </div>
+            </a>
+          </div>
+          <div class="product">
+            <a href="men.html">
+              <div class="product-img">
+                <img src="./assets/image/postars/posterHome5.webp" class="img-fluid" alt="">
+              </div>
+              <div class="product-info flex-column">
+                <div class="product-head"><h3>men's</h3></div>
+                <a href="men.html" class="btn main-btn main-btn--dark">shop now</a>
+              </div>
+            </a>
+          </div>
+          <div class="product">
+            <a href="kids.html">
+              <div class="product-img">
+                <img src="./assets/image/postars/posterHome6.jpg" class="img-fluid" alt="">
+              </div>
+              <div class=" product-info flex-column ">
+                <div class="product-head"><h3>kid's</h3></div>
+                <a href="kids.html" class="btn main-btn main-btn--dark">shop now</a>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end show 3 products  -->
+    <!-- start show 4 products  -->
+    <section class="show-products">
+      <div class="container-fluid m-auto position-relative" style="max-width: 1320px;" >
+        <div class="show-products-head">
+          <h2>BEST SELLERS YOU MAY LIKE</h2>
+        </div>
+        <div class=" products trending fourProducts carousel carousel-1">
+          <div class="loading-banner"><span></span> <span></span> <span></span></div>
+        </div>
+        <button class="controls" id="left" ><i class="bi bi-chevron-left"></i></button>
+        <button class="controls" id="right" ><i class="bi bi-chevron-right"></i></button>
+      </div>
+    </section>
+    <!-- end show 4 products  -->
+  </main>
+  <!-- end main  -->
+  <!-- start footer  -->
+  <footer class="bg-dark padding-section pb-0 mt-5" >
+    <div class="container-fluid px-5">
+      <div class="tobFooter" >
+        <a class="navbar-brand" href="index.html"><img src="./assets/image/logo.png" class="img-fluid logo" alt=""></a>
+        <div class="newsLetter" >
+          <h3>Sign up and get 20% off your first order</h3>
+          <button class="btn main-btn main-btn--gold w-100">sign up for newsletter</button>
+        </div>
+      </div>
+      <div class="medFooter ">
+        <div  class="row" >
+          <div class=" col-md-4 col-sm-6 list-link " >
+            <h5>support</h5>
+            <div class="d-flex" >
+              <ul class="list-unstyled list me-5" >
+                <li><a href="#">contact us</a></li>
+                <li><a href="#"> FAQ </a></li>
+                <li><a href="#">my profile</a></li>
+                <li><a href="#">delivery </a></li>
+              </ul>
+              <ul class="list-unstyled list me-5" >
+                <li><a href="#">find a store </a></li>
+                <li><a href="#">return policy </a></li>
+                <li><a href="#">privacy policy</a></li>
+                <li><a href="#">terms of use </a></li>
+                <li><a href="#">terms of sale </a></li>
+                <li><a href="#">become an affiliate partner </a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6 list-link" >
+            <h5>about PUMA</h5>
+            <div class="d-flex" >
+              <ul class="list-unstyled list me-5" >
+                <li><a href="#">company</a></li>
+                <li><a href="#">corporate news</a></li>
+                <li><a href="#">press center</a></li>
+              </ul>
+              <ul class="list-unstyled list">
+                <li><a href="#">investors </a></li>
+                <li><a href="#">sustainability</a></li>
+                <li><a href="#">careers</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6 list-link pt-4" >
+            <h5>More Inspiration</h5>
+            <ul class="social list-unstyled mt-3 mb-5">
+              <li><a href="#"><i class="bi bi-facebook fs-5" ></i></a></li>
+              <li><a href="#"><i class="bi bi-github fs-5" ></i></a></li>
+              <li><a href="#"><i class="bi bi-instagram fs-5" ></i></a></li>
+              <li><a href="#"><i class="bi bi-linkedin fs-5" ></i></a></li>
+              <li><a href="#"><i class="bi bi-youtube fs-5" ></i></a></li>
+            </ul>
+            <div class="mobil-app pt-5">
+              <a href="#">
+                <img src="./assets/image/pumatrac-logo.svg" class="img-fluid" style="width: 60px;" alt="">
+              </a>
+              <h3><a href="#">TRAIN WITH THE FASTEST</a></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="lastFooter" >
+        <div class="row align-items-center text-center text-sm-start">
+          <div class="col-sm-6">
+            <h3 class="fs-6 mb-sm-0" >Copyright © <script>document.write(new Date().getFullYear())</script> <a href="#">Abd Elkader Mohamed</a></h3>
+          </div>
+          <div class="col-sm-6 text-sm-end">
+            <h3 class="fs-6 mb-0" >Made With <span style="color: #ae946d;" class="fs-4">&hearts;</span> By <span style="color: #ae946d;" class="fs-5" >Boda</span></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- end footer  -->
+  <button class="scrollTo"><i class="bi bi-chevron-up"></i></button>
+  <!-- home js  -->
+  <script src="./assets/js/home.js" type="module"></script>
+  <!-- main js -->
+  <script src="./assets/js/main.js" type="module"></script>
+</body>
+</html>
