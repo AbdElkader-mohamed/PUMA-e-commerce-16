@@ -15,12 +15,10 @@ export function sendDataAllProducts() {
     })
   })
 }
-export function sendDataSingleProducts() {
-  window.onload = _ => {
-    let items = document.querySelectorAll(".card-item")
+export function sendDataSingleProducts(arrayOffItems) {
     let url = 'single-product.html?' ;
     let obj ={};
-    items.forEach(item => {
+    arrayOffItems.forEach(item => {
       item.addEventListener("click", e => {
       if(!e.target.classList.contains("bi")){
         obj.singleProductId = item.dataset.id
@@ -29,6 +27,5 @@ export function sendDataSingleProducts() {
       }
     })
     })
-  }
 }
 

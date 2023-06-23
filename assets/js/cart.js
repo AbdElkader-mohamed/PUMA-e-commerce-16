@@ -1,13 +1,17 @@
 import { addDataFavCartPage,setFinallyCost } from "./data.js";
 let cartTarget = document.querySelector("#cartData");
 let data = JSON.parse(localStorage.getItem("cartData"));
+let inputPromo = document.querySelector("#promoCode");
 let empty = document.querySelector(".empty");
+if (data) {
+  if (data.length > 0) addDataFavCartPage(cartTarget, data,"cartData");
+  else empty.classList.add("active");
 
-if (data.length > 0) addDataFavCartPage(cartTarget, data,"cartData");
-else empty.classList.add("active");
+}
 accordion();
 edit();
-promoCodeHandel();
+
+if (inputPromo) promoCodeHandel();
 dataCheckout();
 function edit() {
   let arrColor = [
@@ -41,8 +45,6 @@ function edit() {
         size,
         custom,
       } = obj.slice(-1)[0];
-
-
       modal.querySelector(".product-img img").src = imageOne1;
       let newCost = `${cost.toString().slice(0, 1)},${cost
         .toString()
@@ -123,8 +125,9 @@ function updateEditData(id) {
   data = data.filter((item) => item.id == id);
   let newData = data.slice(-1)[0]
   let { custom } = newData;
-
+  
   update.addEventListener("click", (_) => {
+    console.log(newData)
     let color;
     let colorRadio = document.querySelectorAll(`.property-div input`);
     let size = document.querySelector(`.EditItemCart #sizeCount`).value;
@@ -135,11 +138,12 @@ function updateEditData(id) {
       );
     custom[0] = color;
     custom[1] = size;
-    custom[2] = count;
+    custom[2] = count 
     let myData = JSON.parse(localStorage.getItem("cartData"));
-
+    myData.pop()
     myData.push(newData);
     localStorage.setItem("cartData", JSON.stringify(myData));
+    window.location.reload()
   });
 }
 function accordion() {
@@ -153,12 +157,9 @@ function accordion() {
 }
 function promoCodeHandel() {
   let warningPromo = document.querySelector(".notPromoCode");
-  let inputPromo = document.querySelector("#promoCode");
   let btnApple = document.querySelector("#promo");
   let warning = document.querySelector(".warningValidation");
-  inputPromo.addEventListener("keydown", () =>
-    btnApple.classList.remove("disabled")
-  );
+  inputPromo.addEventListener("keydown", () =>btnApple.classList.remove("disabled"));
   inputPromo.addEventListener("keyup", function () {
     if (this.value == "") {
       warningPromo.classList.remove("active");
@@ -219,9 +220,11 @@ function promoCodeHandel() {
 }
 function dataCheckout() {
   let checkoutBtn = document.querySelector("#checkoutBtn");
-  checkoutBtn.onclick = (_) => {
-    setDataCheckout()
-  } 
+  if (checkoutBtn) {    
+    checkoutBtn.onclick = (_) => {
+      setDataCheckout()
+    } 
+  }
   function setDataCheckout() {
     let subTotal = document.querySelector(".subTotal").textContent;
     let promo = document.querySelector(".promoSale").textContent;

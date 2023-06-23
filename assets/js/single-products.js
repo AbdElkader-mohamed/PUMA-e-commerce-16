@@ -13,7 +13,8 @@ checking();
 
 closeItem();
 
-
+document.querySelector(".myModal .closeBtn").addEventListener("click", _ => window.location.reload())
+document.querySelector(".ovarlay2").addEventListener("click", _ => window.location.reload())
 
 
 function checking() {
@@ -55,33 +56,6 @@ function closeItem() {
     item.classList.remove("active");
     ovarlay2.classList.remove("active")
   }
-}
-let addFavorites = document.querySelector("#addFavorites") ;
-let flag = document.querySelector(".singleImgs img") ;
-let favCount= document.querySelector("#favCount span");
-let favData = JSON.parse(localStorage.getItem("favData"));
-
-flag.onload = _=> {
-  if (favData.some(item => item.id == addFavorites.dataset.id) && favData.length != 0) {
-    addFavorites.querySelector("i").className = 'bi bi-heart-fill';
-    addFavorites.classList.add("remove");
-  }
-}
-addFavorites.onclick = _=> {
-  if (addFavorites.classList.contains("remove")) remove()
-}
-function remove() {
-  favData = favData.filter(item => item.id != addFavorites.dataset.id)
-  localStorage.setItem("favData",JSON.stringify(favData))
-  if (favData.length == 0) favCount.style.display = 'none'
-  if (favCount) favCount.textContent = favData.length ;
-  addFavorites.querySelector("i").className = 'bi bi-heart';
-  addFavorites.classList.remove("remove");
-  setTimeout(_=>{
-    window.location.reload()
-  },3000)
-  document.querySelector(".removedAlert").classList.add("active")
-  document.querySelector(".ovarlay2").classList.add("active")
 }
 
 

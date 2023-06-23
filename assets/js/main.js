@@ -9,9 +9,9 @@ let scrollBtn = document.querySelector(".scrollTo")
 
 navBarHandel();
 sendDataAllProducts();
-sendDataSingleProducts();
-if(JSON.parse(localStorage.getItem("cartData"))) setNumsCartFav("cartData")
-if(JSON.parse(localStorage.getItem("favData"))) setNumsCartFav("favData")
+if(document.querySelectorAll(".card-item")) sendDataSingleProducts(document.querySelectorAll(".card-item"));
+if(JSON.parse(localStorage.getItem("cartData"))) setNumsCartFav("cartData",JSON.parse(localStorage.getItem("cartData")))
+if(JSON.parse(localStorage.getItem("favData"))) setNumsCartFav("favData",JSON.parse(localStorage.getItem("favData")))
 cartOffcanvas()
 scroll();
 loaders();
@@ -94,10 +94,7 @@ function loaders() {
 
 }
 function cartOffcanvas() {
-  let dataCart = JSON.parse(localStorage.getItem("cartData"));
-  let offcanvas = document.querySelector(".cartOffcanvas") ;
   let toggleOffcanvas = document.querySelector("#GoToCart") ;
-  
   toggleOffcanvas.addEventListener("click", function() {
     document.getElementById(this.dataset.target).classList.toggle("active");
     overLay2.classList.toggle("active");
@@ -114,36 +111,10 @@ function close() {
 function closeAnyModal() {
   overLay.onclick = function() {
     document.querySelectorAll(".closeItem").forEach(item => item.classList.remove("active"));
-    this.classList.remove("active")
+    this.classList.remove("active");
   }
   overLay2.onclick = function() {
     this.classList.remove("active")
     document.querySelectorAll(".closeItem").forEach(item => item.classList.remove("active"))
   }
 }
-
-
-
-// var objs = [
-//   { id: 3, postcode: "xxx", street: "xxx", city: "xxx" },
-//   { id: 1, postcode: "xxx", street: "xxx", city: "xxx" },
-//   { id: 1, postcode: "xxx", street: "xxx", city: "xxx" },
-//   { id: 2, postcode: "xxx", street: "xxx", city: "xxx" },
-//   { id: 2, postcode: "xxx", street: "xxx", city: "xxx" },
-//   { id: 2, postcode: "xxx", street: "xxx", city: "xxx" },
-//   { id: 5, postcode: "xxx", street: "xxx", city: "xxx" },
-//   { id: 2, postcode: "xxx", street: "xxx", city: "xxx" },
-//   { id: 2, postcode: "xxx", street: "xxx", city: "xxx" },
-//   { id: 3, postcode: "xxx", street: "xxx", city: "xxx" },
-//   { id: 3, postcode: "xxx", street: "xxx", city: "xxx" },
-//   { id: 3, postcode: "xxx", street: "xxx", city: "xxx" },
-//   { id: 3, postcode: "xxx", street: "xxx", city: "xxx" }
-// ];
-
-// var result = objs.reduce(function(r, a) {
-//  r[a.id] = r[a.id] || [];
-//  r[a.id].push(a);
-//  return r;
-// }, Object.create(null));
-
-// console.log(Object.values(result));

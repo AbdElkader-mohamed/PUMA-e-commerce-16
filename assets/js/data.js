@@ -49,7 +49,6 @@ export async function getData(flag, num) {
             if (!num) renderData(item, target, slider);
     }
   });
-
   draggableSlid(document.querySelector(".carousel-1"));
   draggableSlid(document.querySelector(".carousel-2"));
 }
@@ -76,6 +75,7 @@ function renderData(item, target, slider) {
   </div>
   `;
   checker(item, target, slider);
+  sendDataSingleProducts(document.querySelectorAll(".card-item"))
 }
 function searchBar(target,data,deletedBtns,gridControls,pagination,renderDataProducts,filterProducts) {
   let thisIs;
@@ -206,9 +206,9 @@ function renderDataProducts(data) {
         </div>
       `;
     checker(item, target);
+    if(document.querySelectorAll(".card-item")) sendDataSingleProducts(document.querySelectorAll(".card-item"));
   })
-  sendDataSingleProducts()
-  if(data.length == 0)  ifComingSoon(newArr);
+  if (data) if(data.length == 0)  ifComingSoon(newArr);
   document.querySelectorAll(".slider").forEach((slid) => draggableSlid(slid));
 }
 // function filter products 
@@ -320,14 +320,25 @@ function filterProducts(newData,pagination,deletedBtns,gridControls) {
   /*-----*/
 }
 // add data to single product page
-export async function getDataSingleProduct() {
+  export async function getDataSingleProduct() {
   let arr = getDataThro();
   let url = "https://abdelkader-mohamed.github.io/my-data-/PUMA/PUMA.json";
   let data = await fetch(url);
   data = await data.json();
   data.data.forEach((item) => {
-    if (item.id == arr[0][1]) renderDataSingleProduct(item, data.data);
+    if (item.id == arr[0][1]) {
+      renderDataSingleProduct(item, data.data);
+      addToCartFavBtn(item);
+    } 
   });
+  let add = document.querySelector("#addFavorites");
+  let favData = JSON.parse(localStorage.getItem("favData"));
+  if (favData) {
+    if(favData.some(it => it.id == add.dataset.id)) {
+      add.querySelector("i").className = "bi bi-heart-fill";
+      add.classList.add("remove");
+    }
+  }
 }
 // render elements to single product page
 function renderDataSingleProduct(item) {
@@ -415,7 +426,6 @@ function renderDataSingleProduct(item) {
   `;
     }
   }
-  addToCartFavBtn(item);
   document.querySelector("#addToCart").dataset.id = id;
   document.querySelector("#addFavorites").dataset.id = id;
   document.querySelector("#story").textContent = story;
@@ -437,7 +447,7 @@ function renderDataSingleProduct(item) {
     }
   );
 }
-//  لسه مخلصتش
+// add to cart add to fav 
 function addToCartFavBtn(item) {
   let cartData = JSON.parse(localStorage.getItem("cartData")) ?? [];
   let favData = JSON.parse(localStorage.getItem("favData")) ?? [];
@@ -459,37 +469,48 @@ function addToCartFavBtn(item) {
     radioSize.forEach((size) => {
       if (size.checked) mark = true;
     });
-    handelData();
+    handelValeDate("color");
+    handelValeDate("size");
+    handelData()
+    
     if (flag && mark) {
       cartData.push(item);
       localStorage.setItem("cartData", JSON.stringify(cartData));
       addDataToModal(style, color, size, count);
-      setNumsCartFav(count);
+      setNumsCartFav("cartData",cartData) 
     }
   });
   addFavorites.addEventListener("click", function () {
-    handelData();
     radioColor.forEach((color) => {
       if (color.checked) flag = true;
     });
     radioSize.forEach((size) => {
       if (size.checked) mark = true;
     });
-    if (favData.some((item) => item.id == addFavorites.dataset.id))
-      flag = false;
-    if (flag && mark) {
-      favData.push(item);
-      localStorage.setItem("favData", JSON.stringify(favData));
-      if (favCount) favCount.textContent = favData.length;
-      addFavorites.querySelector("i").className = "bi bi-heart-fill";
-      addFavorites.classList.add("remove");
-      addDataAlert();
-    }
-  });
-
-  function handelData() {
     handelValeDate("color");
     handelValeDate("size");
+    handelData();
+    if (flag && mark) {
+      if (addFavorites.classList.contains("remove")){
+          favData = favData.filter(item => item.id != addFavorites.dataset.id)
+          localStorage.setItem("favData",JSON.stringify(favData))
+          if (favData.length == 0) favCount.style.display = 'none'
+          if (favCount) favCount.textContent = favData.length ;
+          addFavorites.querySelector("i").className = 'bi bi-heart';
+          addFavorites.classList.remove("remove");
+          document.querySelector(".removedAlert").classList.add("active")
+          document.querySelector(".ovarlay2").classList.add("active")
+      }else {
+        favData.push(item);
+        localStorage.setItem("favData", JSON.stringify(favData));
+        if (favCount) favCount.textContent = favData.length;
+        addFavorites.querySelector("i").className = "bi bi-heart-fill";
+        addFavorites.classList.add("remove");
+        addDataAlert();
+      }
+    }
+  });
+  function handelData() {
     count = document.querySelector(`select[name="count"]`).value;
     style = document.querySelector(".style-id span").textContent;
     let custom = [color, size, count, style];
@@ -561,10 +582,12 @@ function addToCartFavBtn(item) {
 }
 // function to get and set data  to fav & cart page 
 let arr = [];
-export function addDataFavCartPage(target, localStorageData) {
+export function addDataFavCartPage(target, localStorageData,flag) {
   let filtered = localStorageData.filter((item, i, arr) => arr.map((itm) => itm.id).lastIndexOf(item.id) === i);
   renderDataToTarget(target, filtered);
-  if (target.id == "cartData") renderDataPromo();
+  if (flag == "cartData") renderDataPromo();
+    // function handel removing from cart & favorites 
+    Remove(flag)
 }
 // function render Data To fav & cart 
 function renderDataToTarget(target, newData) {
@@ -617,9 +640,10 @@ function renderDataToTarget(target, newData) {
       editItem.forEach(btn =>{
         btn.classList.remove("main-btn--outline");
         btn.classList.add("main-btn--gold");
-        btn.classList.add("addToCart");
+        btn.classList.add("addToCart") ;
         btn.textContent = "add to cart"
       })
+      addToCartFromFav(document.querySelector(".addToCart"))
     }
     if (type.includes("trending"))
       document.querySelector(
@@ -641,8 +665,27 @@ function renderDataToTarget(target, newData) {
       newCost.querySelector(".product-cost div").classList.add("offer");
     }
   });
-  // function handel removing from cart & favorites 
-  Remove()
+
+  function addToCartFromFav(addToCart) {
+    if (addToCart) {
+      
+      addToCart.addEventListener("click", _=> {
+        let favData = JSON.parse(localStorage.getItem("favData"))
+      let cartData = JSON.parse(localStorage.getItem("cartData"))
+      let item = favData.filter(item => item.id == addToCart.dataset.id);
+      favData = favData.filter(item => item.id != addToCart.dataset.id);
+      cartData.push(item[0])
+
+      setNumsCartFav("favData",favData)
+      setNumsCartFav("cartData",cartData)
+      localStorage.setItem("favData",JSON.stringify(favData));
+      localStorage.setItem("cartData",JSON.stringify(cartData));
+      console.log(item.id)
+      document.querySelector(`#item${item.id}`).remove()
+      // function addDataToModal(style, color, size, count)
+    })
+  }
+  }
 }
 // function render Data To cart promo section 
 function renderDataPromo() {
@@ -741,22 +784,19 @@ export function setFinallyCost() {
     .slice(0, 1)},${final.toString().slice(1)}.00`;
 }
   // function set count of length data in fav local & cart local 
-export function setNumsCartFav(flag) {
+export function setNumsCartFav(flag,data) {
   if( flag == "favData") {
-    let favData = JSON.parse(localStorage.getItem("favData"));
-
-    if (favData && favData.length != 0) document.querySelector("#favCount span").textContent = favData.length;
+    if (data && data.length != 0) document.querySelector("#favCount span").textContent = data.length;
   }else {
-
-    let countCart = getCount();
     let num = 0;
-  Object.values(countCart).forEach((item) =>
-    item.forEach((ite) => (num += +ite.custom[2]))
-  );
-  let cartSpan = document.querySelector("#cartCount span");
-  if (Object.values(countCart).length > 0) {
-    (cartSpan.style.opacity = "1"), (cartSpan.textContent = num);
-  } else cartSpan.style.opacity = "0";
+    let cartSpan = document.querySelector("#cartCount span");
+    if(data) {
+      if (data.length <= 0) cartSpan.style.opacity ='0'
+      else cartSpan.style.opacity ='1'
+      data.forEach(item => num += +item.custom[2])
+    } 
+  
+  cartSpan.textContent = `${num}`
   if (document.querySelector(".cart-section")) document.querySelector(".cart-header h2 span").textContent = `(${num})`;
 }
 }
@@ -773,7 +813,7 @@ function getCount() {
   }
 }
   // function handel removing from cart & favorites 
-function Remove() {
+function Remove(flag2) {
   let removeItem = document.querySelectorAll("#removeItem");
   removeItem.forEach((item) => {
     item.addEventListener("click", (e) => {
@@ -781,26 +821,30 @@ function Remove() {
         e.target.parentElement.parentElement.parentElement.querySelector(
           ".product-name h3"
         ).textContent;
-      document.querySelector(".removeditemCart .product-name h3").textContent =
-        itemName;
-      modalRemove(e.target.dataset.id);
+      document.querySelector(".removeditemCart .product-name h3").textContent = itemName;
+      modalRemove(e.target.dataset.id,flag2);
     });
   });
 }
   // function handel removing from cart & favorites 
-function modalRemove(flag) {
+function modalRemove(flag,flag2) {
+document.querySelector(".removeditemCart").classList.add("active");
+document.querySelector(".ovarlay2").classList.add("active");
+document.querySelector("#yasRemove").onclick = (_) => {
+  if ( flag2 == "cartData") {
   let data = JSON.parse(localStorage.getItem("cartData"));
-  document.querySelector(".removeditemCart").classList.add("active");
-  document.querySelector(".ovarlay2").classList.add("active");
-  document.querySelector("#yasRemove").onclick = (_) => {
-    document.getElementById(`item${flag}`).remove();
-    data = data.filter((item) => item.id != flag);
-    localStorage.setItem("cartData", JSON.stringify(data));
-    setNumsCartFav();
-    document.querySelector(".closeItem.active").classList.remove("active");
-    document.querySelector(".ovarlay2").classList.remove("active");
-    window.location.reload();
-  };
+  data = data.filter((item) => item.id != flag);
+  localStorage.setItem("cartData", JSON.stringify(data));
+}else{
+  let data = JSON.parse(localStorage.getItem("favData"));
+  data = data.filter((item) => item.id != flag);
+  localStorage.setItem("favData", JSON.stringify(data));
+  }
+  // setNumsCartFav();
+  document.querySelector(".closeItem.active").classList.remove("active");
+  document.querySelector(".ovarlay2").classList.remove("active");
+  window.location.reload();
+};
 }
   // function get data from url and return [] of arg
 const getDataThro = function () {
