@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PUMA</title>
+  <link rel="shortcut icon" href="./assets/image/icon.png">
+  <!-- bootstrap icons-->
+  <link rel="stylesheet" href="./assets/css/vendors/bootstrap-icons.min.css">
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="./assets/css/vendors/bootstrap.min.css">
+  <!-- main css -->
+  <link rel="stylesheet" href="./assets/css/main.css">
+</head>
+<body>
+  <!-- loading -->
+  <div class="main-loding"><div><span></span> <span></span></div></div>
+  <!-- start navbar -->
+  <nav class="navbar navbar-expand-xl bg-dark">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand" href="index.html"><img src="./assets/image/logo.png" class="img-fluid logo" alt=""></a>
+    </div>
+  </nav>
+  <!-- end navbar  -->
+  <section class="checkout">
+    <div class="container ">
+    <ul class="breadcrumb ">
+        <a class="btn main-btn" href="index.html" >home</a>
+        <a class="btn main-btn" href="personal.html" >myAccount</a>
+        <li class="btn main-btn "  >checkout</li>
+    </ul>
+    <div class="fav-header flex-column flex-md-row"><h2 class="mb-3 mb-md-0" > have a nice checkout Abdelkader's </h2> </div>
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="part" id="showFromLocalStoreg">
+          <table class="table mb-0" >
+            <thead>
+              <tr>
+                <th class="part-head" colspan="2"><h3>1.order summary</h3></th>
+                <td>quantity</td>
+                <td>price</td>
+                <td>total</td>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+          <div class="supTotal">
+            <h3>items total <span>EGP 29833.00</span></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <!-- start footer  -->
+  <footer class="bg-dark padding-section pb-0 mt-5" >
+    <div class="container-fluid px-5">
+      <div class="tobFooter border-0" >
+        <a class="navbar-brand" href="index.html"><img src="./assets/image/logo.png" class="img-fluid logo" alt=""></a>
+      </div>
+      <div class="lastFooter " >
+        <div class="row align-items-center text-center text-sm-start">
+          <div class="col-sm-6">
+            <h3 class="fs-6 mb-sm-0" >Copyright © <script>document.write(new Date().getFullYear())</script> <a href="#">Abd Elkader Mohamed</a></h3>
+          </div>
+          <div class="col-sm-6 text-sm-end">
+            <h3 class="fs-6 mb-0" >Made With <span style="color: #ae946d;" class="fs-4">&hearts;</span> By <span style="color: #ae946d;" class="fs-5" >Boda</span></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- end footer  -->
+  <!-- main js -->
+  <script src="./assets/js/checkout.js" type="module"></script>
+
+</body>
+</html>

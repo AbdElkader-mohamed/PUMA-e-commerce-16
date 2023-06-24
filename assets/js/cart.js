@@ -1,29 +1,26 @@
-import { addDataFavCartPage,setFinallyCost } from "./data.js";
+import { addDataFavCartPage} from "./data.js";
 let cartTarget = document.querySelector("#cartData");
 let data = JSON.parse(localStorage.getItem("cartData"));
-let inputPromo = document.querySelector("#promoCode");
 let empty = document.querySelector(".empty");
+
+// set data in page 
 if (data) {
   if (data.length > 0) addDataFavCartPage(cartTarget, data,"cartData");
   else empty.classList.add("active");
-
 }
+// function handel all accordions 
 accordion();
+
+// function edit in cart items  
 edit();
 
-if (inputPromo) promoCodeHandel();
-dataCheckout();
+//promo code validation
+promoCodeHandel();
+
+gotoCheckout();
+
 function edit() {
-  let arrColor = [
-    "white",
-    "black",
-    "blue",
-    "red",
-    "green",
-    "pink",
-    "yellow",
-    "purple",
-  ];
+  let arrColor = ["white","black","blue","red","green","pink","yellow","purple",];
   let editItem = document.querySelectorAll("#editItem");
   let modal = document.querySelector(".EditItemCart");
   editItem.forEach((item) => {
@@ -31,20 +28,8 @@ function edit() {
       modal.querySelector("#color .property-div").innerHTML = "";
       modal.querySelector("#countItem").innerHTML = "";
       modal.querySelector("#sizeCount").innerHTML = "";
-      document.querySelector(".ovarlay2").classList.add("active");
-      modal.classList.add("active");
-      let obj = data.filter((item) => item.id == this.dataset.id);
-      let {
-        id,
-        productName,
-        imageOne1,
-        costLeft,
-        cost,
-        colors,
-        imageOne6,
-        size,
-        custom,
-      } = obj.slice(-1)[0];
+      let obj = JSON.parse(localStorage.getItem("cartData")).filter((item) => item.id == this.dataset.id);
+      let {id,productName,imageOne1,costLeft,cost,colors,imageOne6,size,custom,} = obj.slice(-1)[0];
       modal.querySelector(".product-img img").src = imageOne1;
       let newCost = `${cost.toString().slice(0, 1)},${cost
         .toString()
@@ -75,51 +60,34 @@ function edit() {
         `#item${id} .count-item span`
       ).textContent;
       count = count.slice(0, count.indexOf(")")).replace("(", "");
-      let newCount = count < 3 ? 3 : count;
-      for (let i = 1; i <= newCount; i++)
-        modal.querySelector(
-          "#countItem"
-        ).innerHTML += `<option value="${i}" >${i}</option>`;
-      modal
-        .querySelector(`#countItem  option[value="${count}"]`)
-        .setAttribute("selected", true);
+      let newCount = 8 ;
+      for (let i = 1; i <= newCount; i++) modal.querySelector("#countItem").innerHTML += `<option value="${i}" >${i}</option>`;
+      modal.querySelector(`#countItem  option[value="${count}"]`).setAttribute("selected", true);
       if (costLeft) {
         if (document.querySelector(".singleProductInfo-cost .deleted")) {
-          modal
-            .querySelector(".singleProductInfo-cost div")
-            .classList.remove("offer");
+          modal.querySelector(".singleProductInfo-cost div").classList.remove("offer");
           modal.querySelector(".product-img span").remove();
           modal.querySelector(".singleProductInfo-cost .deleted").remove();
         }
-        let costLeftOffer = `${costLeft.toString().slice(0, 1)},${costLeft
-          .toString()
-          .slice(1)}.00`;
-        modal.querySelector(
-          ".singleProductInfo-cost"
-        ).innerHTML += `<div class="deleted" ><span>EGP </span> <span> ${costLeftOffer}</span></div>`;
-        modal
-          .querySelector(".singleProductInfo-cost div")
-          .classList.add("offer");
+        let costLeftOffer = `${costLeft.toString().slice(0, 1)},${costLeft.toString().slice(1)}.00`;
+        modal.querySelector(".singleProductInfo-cost").innerHTML += `<div class="deleted" ><span>EGP </span> <span> ${costLeftOffer}</span></div>`;
+        modal.querySelector(".singleProductInfo-cost div").classList.add("offer");
         let percent = ((cost - costLeft) / costLeft) * 100;
-        modal
-          .querySelector(".product-img")
-          .insertAdjacentHTML(
-            "afterbegin",
-            `<span>${percent.toFixed()}%</span>`
-          );
+        modal.querySelector(".product-img").insertAdjacentHTML(  "afterbegin",  `<span>${percent.toFixed()}%</span>`);
       } else {
         if (document.querySelector(".singleProductInfo-cost .deleted")) {
-          modal
-            .querySelector(".singleProductInfo-cost div")
-            .classList.remove("offer");
+          modal.querySelector(".singleProductInfo-cost div").classList.remove("offer");
           modal.querySelector(".product-img span").remove();
           modal.querySelector(".singleProductInfo-cost .deleted").remove();
         }
       }
+      document.querySelector(".ovarlay2").classList.add("active");
+      modal.classList.add("active");
       updateEditData(id);
     });
   });
 }
+// function update in localStorage 
 function updateEditData(id) {
   let update = document.querySelector("#update");
   data = data.filter((item) => item.id == id);
@@ -127,18 +95,14 @@ function updateEditData(id) {
   let { custom } = newData;
   
   update.addEventListener("click", (_) => {
-    console.log(newData)
     let color;
     let colorRadio = document.querySelectorAll(`.property-div input`);
     let size = document.querySelector(`.EditItemCart #sizeCount`).value;
     let count = document.querySelector(`.EditItemCart #countItem`).value;
-    colorRadio = colorRadio.forEach((item) =>
-      item.checked ? (color = item.id) : ""
-      
-      );
+    colorRadio = colorRadio.forEach((item) =>item.checked ? (color = item.id) : "");
     custom[0] = color;
     custom[1] = size;
-    custom[2] = count 
+    custom[2] = count ;
     let myData = JSON.parse(localStorage.getItem("cartData"));
     myData.pop()
     myData.push(newData);
@@ -156,10 +120,11 @@ function accordion() {
   });
 }
 function promoCodeHandel() {
+let inputPromo = document.querySelector("#promoCode");
   let warningPromo = document.querySelector(".notPromoCode");
   let btnApple = document.querySelector("#promo");
   let warning = document.querySelector(".warningValidation");
-  inputPromo.addEventListener("keydown", () =>btnApple.classList.remove("disabled"));
+  inputPromo.addEventListener("keydown", () => btnApple.classList.remove("disabled"));
   inputPromo.addEventListener("keyup", function () {
     if (this.value == "") {
       warningPromo.classList.remove("active");
@@ -180,57 +145,56 @@ function promoCodeHandel() {
       case "boda55":
         sale = 20;
         handelOfferCost(sale);
+        document.querySelector(".promoHidden").add("active");
         break;
       case "eraaSoft98":
         sale = 50;
         handelOfferCost(sale);
+        document.querySelector(".promoHidden").add("active");
         break;
       case "hamada":
         sale = 30;
         handelOfferCost(sale);
+        document.querySelector(".promoHidden").add("active");
         break;
       default:
         sale = 0;
         warningPromo.classList.add("active");
-        setFinallyCost();
-        setDataCheckout();
-        document.querySelector(".promoHidden").remove("active");
+        document.querySelector(".promoHidden").classList.remove("active");
         document.querySelector(".promoSale").textContent = ""
+        handelOfferCost(sale);
         break;
-    }
-    setDataCheckout()
+      }
     function handelOfferCost(sale) {
-      warningPromo.classList.remove("active");
       subTotal = document.querySelector(".subTotal").textContent;
       subTotal = subTotal.slice(3, -3).replace(",", "");
-      percent = `0.${sale}` * +subTotal;
-      percent = percent.toFixed(2);
-      document.querySelector(".promoHidden").classList.add("active");
-      document.querySelector(".promoSale").textContent = `EGP ${percent}`;
+      if (sale != 0) {
+        warningPromo.classList.remove("active");
+        percent = `0.${sale}` * +subTotal;
+        percent = Math.floor(percent);
+        document.querySelector(".promoHidden").classList.add("active");
+        document.querySelector(".promoSale").textContent = `EGP ${percent.toString().slice(0, 1)},${percent.toString().slice(1)}.00`;
+        let finaleData = subTotal - percent;
+        document.querySelector(".totalCost").textContent = `EGP ${finaleData.toString().slice(0, 1)},${finaleData.toString().slice(1)}.00`;
+        let data = [sale] ;
+        sessionStorage.setItem("promoCode",JSON.stringify(data))
+      }else {
+        let finaleData = +subTotal + 100;
+        document.querySelector(".promoSale").textContent = ""
+        document.querySelector(".totalCost").textContent = `EGP ${finaleData.toString().slice(0, 1)},${finaleData.toString().slice(1)}.00`;
+      }
+      inputPromo.classList.remove("notValid");
+      inputPromo.blur();
+      inputPromo.value = "";
+      btnApple.classList.add("disabled")
     }
-    if (sale != 0) {
-      let finaleData = subTotal - percent;
-      finaleData = `${finaleData.toString().slice(0, 1)},${finaleData.toString().slice(1)}`;
-      document.querySelector(".totalCost").textContent = finaleData;
-    }
-    inputPromo.classList.remove("notValid");
-    inputPromo.blur();
-    inputPromo.value = "";
   });
 }
-function dataCheckout() {
-  let checkoutBtn = document.querySelector("#checkoutBtn");
-  if (checkoutBtn) {    
-    checkoutBtn.onclick = (_) => {
-      setDataCheckout()
-    } 
-  }
-  function setDataCheckout() {
-    let subTotal = document.querySelector(".subTotal").textContent;
-    let promo = document.querySelector(".promoSale").textContent;
-    let finale = document.querySelector(".totalCost").textContent;
-    let shipping = document.querySelector(".shipping").textContent;
-    localStorage.setItem("dataCheckout",JSON.stringify([subTotal, shipping, finale, promo])
-    );
-  }
+
+
+function gotoCheckout(){
+  document.getElementById("checkoutBtn").addEventListener("click", _=> {
+    window.open("checkout.html","_self")
+  })
 }
+

@@ -33,41 +33,39 @@
   </div>
   <!-- end modal -->
   <!-- start modal -->
-  <div class="myModal EditItemCart closeItem">
-    <div class="row">
-      <div class="col-md-6">
-        <div class="product-img mb-0">
-          <img src="./assets/image/helperData/1a.jpg" class="img-fluid" alt="">
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="modal-header" ><h2>Softride Enzo Evo Running Shoes</h2> <button class="btn closeBtn" > <i class="bi bi-x-lg" ></i> </button></div>
-        <div class="modal-body" >
-          <div class="singleProductInfo-cost loading-text">
-            <div class="cost" ><span>EGP </span> <span class="span" > 2,333.00</span></div>
-          </div>
-          <div class="singleProductInfo-smText">
-            <span class="loading-text" >Taxes & Duties included</span>
-          </div>
-          <div class="property loading-text" id="color" >
-            <h3>Color</h3>
-          <div class="property-div"></div>
-          </div>
+  <div class="myModal add closeItem">
+      <div class="modal-header" ><h2> <i class="bi bi-check-circle"></i> <span>19</span> item(s) added to your cart!</h2> <button class="btn closeBtn" > <i class="bi bi-x-lg" ></i> </button></div>
+      <div class="modal-body" >
+        <div class="item">
           <div class="row">
-            <div class="col-6">
-              <select class="btn form-select main-btn main-btn--outline" name="count" id="sizeCount"></select>
+            <div class="col-4">
+              <div>
+                <img src="./assets/image/kidsWear/10a.webp" class="img-fluid"  alt="">
+              </div>
             </div>
-            <div class="col-6">
-              <select class="btn form-select main-btn main-btn--outline" name="count" id="countItem">
-              </select>
+            <div class="col-8">
+              <div class="row">
+                <div class="col-sm-8 gx-2">
+                  <div class="product-name" ><h3>Disperse XT 2 Training Shoes</h3></div>
+                  <div class="info color-modal"> <p class="mb-1">color : <span>green</span></p> </div>
+                  <div class="info size-modal"> <p class="mb-1">size : <span>46</span></p> </div>
+                  <div class="info style-modal"> <p class="mb-1">style : <span>388263_33</span></p> </div>
+                </div>
+                <div class="col-sm-4 gx-2">
+                  <div class="product-cost" >
+                    <div ><span class="ms-sm-auto" >EGP</span> <span class="cost" >3,443.00</span></div>
+                    <div class="deleted ms-sm-auto" ><span>EGP </span> <span class="target" > 56787</span></div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="controls-modal ">
-            <button  class=" btn main-btn main-btn--gold closeBtn " id="update">update</button>
           </div>
         </div>
+        <div class="controls-modal">
+          <a href="cart.html" class=" btn main-btn main-btn--outline " id="cartLength" >view cart <span></span> </a>
+          <a href="checkout.html" class=" btn main-btn main-btn--gold "  >checkout</a>
+        </div>
       </div>
-    </div>
   </div>
   <!-- end modal -->
   <!-- start offcanvas  -->
@@ -317,7 +315,7 @@
                     </ul>
                   </div>
                   <div class="col-3 items">
-                    <a href="#" class="nav-link"><span>Collections</span></a>
+                    <button data-bs-target="collections" class="nav-link"><span>Collections</span></button>
                   </div>
                 </div>
               </div>
@@ -797,10 +795,12 @@
     <div class="container ">
       <ul class="breadcrumb loading-text">
         <a class="btn main-btn" href="index.html" >home</a>
-        <a class="btn main-btn" href="myAccount.html" >myAccount</a>
+        <a class="btn main-btn" href="personal.html" >myAccount</a>
         <li class="btn main-btn "  >favorites</li>
       </ul>
-    <div class="fav-header loading-text"><h2> Abdelkader's wishlist </h2> <div class="social"><ul class="list-unstyled">
+    <div class="fav-header loading-text flex-column flex-md-row">
+      <h2 class="mb-3 mb-md-0" > Abdelkader's wishlist </h2> 
+      <div class="social"><ul class="list-unstyled">
       <li>Share wishlist</li>
       <li><a href="#"><i class="bi bi-facebook" ></i></a></li>
       <li><a href="#"><i class="bi bi-twitter" ></i></a></li>
@@ -811,7 +811,7 @@
         <div class="iconEmpty" ><i class="bi bi-heart" ></i></div>
           <div class="textEmpty" ><h3>WISHLIST IS EMPTY</h3></div>
       </div>
-      <div class=" col-lg-9">
+      <div class=" col-lg-8 mt-5">
         <div class="showData" id="favData">
         </div>
       </div>

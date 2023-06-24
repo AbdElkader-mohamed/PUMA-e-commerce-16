@@ -77,20 +77,6 @@ function renderData(item, target, slider) {
   checker(item, target, slider);
   sendDataSingleProducts(document.querySelectorAll(".card-item"))
 }
-function searchBar(target,data,deletedBtns,gridControls,pagination,renderDataProducts,filterProducts) {
-  let thisIs;
-  target.addEventListener("keyup",function () {
-  thisIs = this
-    let newData =[];
-    data.forEach(item => {
-      if(item.productName.includes(this.value.toUpperCase()) || item.productName.includes(this.value) || `${item.productName.slice(0,1).toLowerCase()}${item.productName.slice(1)}`.includes(this.value)) newData.push(item)})
-    filterProducts(newData,pagination,deletedBtns,gridControls)
-    renderDataProducts(newData)
-    pagination(newData)
-    gridControls(newData)
-    deletedBtns(newData)
-  })
-}
 // data all target products
 export async function getAllProducts(gridControls,pagination,deletedBtns,ifComingSoon) {
   let arr = getDataThro();
@@ -319,6 +305,55 @@ function filterProducts(newData,pagination,deletedBtns,gridControls) {
   });
   /*-----*/
 }
+//searchBar handel
+function searchBar(target,data,deletedBtns,gridControls,pagination,renderDataProducts,filterProducts) {
+  let thisIs;
+  target.addEventListener("keyup",function () {
+  thisIs = this
+  let newData =[];
+  data.forEach(item => {
+    let reg = new RegExp(this.value,"gi")
+      if(reg.test(item.productName)) newData.push(item)})
+    // filterProducts(newData,pagination,deletedBtns,gridControls)
+    renderDataProducts(newData)
+    pagination(newData)
+    gridControls(newData)
+    deletedBtns(newData)
+  })
+}
+// checking if target hav a slider  or sale % or trending page in all products and main pages
+function checker(item, target, slider) {
+  let { id, type, cost, costLeft } = item;
+  if (type.includes("trending"))
+    document.querySelector(
+      `button[data-id="${id}"] .trending`
+    ).innerHTML = `<span><h3>Trending</h3></span>`;
+    let newCost = document.querySelector(`button[data-id="${id}"] .product-cost`);
+  if (costLeft) {
+    let offerPercent;
+    if (document.querySelector(".sliderParent")) {
+      offerPercent = document.querySelector(`button[data-id="${id}"] .sliderParent`);
+    }else {
+      offerPercent = document.querySelector(`button[data-id="${id}"] .product-img`);
+    }
+    let percent = ((cost - item.costLeft) / item.costLeft) * 100;
+    let costLeft = `${item.costLeft.toString().slice(0, 1)},${item.costLeft
+      .toString()
+      .slice(1)}.00`;
+    newCost.querySelector("div").classList.add("offer");
+      newCost.innerHTML += `<div class="deleted" ><span>EGP </span> <span> ${costLeft}</span></div>`;
+    offerPercent.innerHTML += `<span>${percent.toFixed()}%</span>`;
+  }
+  if (target.classList.contains("carousel")) {
+    slider.querySelectorAll(".product").forEach((product) => {
+      product.classList.add("item-slider");
+      product.querySelector(".card-item").setAttribute("draggable", false);
+      product
+        .querySelector(".product-img img")
+        .setAttribute("draggable", false);
+    });
+  }
+}
 // add data to single product page
   export async function getDataSingleProduct() {
   let arr = getDataThro();
@@ -474,10 +509,22 @@ function addToCartFavBtn(item) {
     handelData()
     
     if (flag && mark) {
-      cartData.push(item);
-      localStorage.setItem("cartData", JSON.stringify(cartData));
-      addDataToModal(style, color, size, count);
-      setNumsCartFav("cartData",cartData) 
+      let inputCount = document.querySelector("#mach").value ;
+      if(cartData.some(item => item.id == addToCart.dataset.id)) {
+        let filteredData = cartData.filter(item => item.id == addToCart.dataset.id);
+        let filteredWithout = cartData.filter(item => item.id != addToCart.dataset.id);
+        let saved = filteredData[0].custom[2];
+        filteredData[0].custom[2] = +saved + +inputCount;
+        filteredWithout.push(filteredData[0]);
+        localStorage.setItem("cartData", JSON.stringify(filteredWithout));
+        addDataToModal(filteredData[0].custom[3], filteredData[0].custom[0], filteredData[0].custom[1], +filteredData[0].custom[2]);
+        setNumsCartFav("cartData",filteredWithout) 
+      }else {
+        cartData.push(item);
+        localStorage.setItem("cartData", JSON.stringify(cartData));
+        addDataToModal(style, color, size, count);
+        setNumsCartFav("cartData",cartData) 
+      }
     }
   });
   addFavorites.addEventListener("click", function () {
@@ -508,6 +555,17 @@ function addToCartFavBtn(item) {
         addFavorites.classList.add("remove");
         addDataAlert();
       }
+    }else if(addFavorites.classList.contains("remove")) {
+      favData = favData.filter(item => item.id != addFavorites.dataset.id)
+      localStorage.setItem("favData",JSON.stringify(favData))
+      if (favData.length == 0) favCount.style.display = 'none'
+      if (favCount) favCount.textContent = favData.length ;
+      addFavorites.querySelector("i").className = 'bi bi-heart';
+      addFavorites.classList.remove("remove");
+      document.querySelector("#color").style = "border-color:transparent";
+      document.querySelector("#size").style = "border-color:transparent";
+      document.querySelector(".removedAlert").classList.add("active")
+      document.querySelector(".ovarlay2").classList.add("active")
     }
   });
   function handelData() {
@@ -533,11 +591,10 @@ function addToCartFavBtn(item) {
     }
   }
   function addDataToModal(style, color, size, count) {
+    let add = 0;
     document.querySelector(".myModal").classList.add("active");
     document.querySelector(".ovarlay2").classList.add("active");
-    let cost = `${item.cost.toString().slice(0, 1)},${item.cost
-      .toString()
-      .slice(1)}.00`;
+    let cost = `${item.cost.toString().slice(0, 1)},${item.cost.toString().slice(1)}.00`;
     document.querySelector(".item img").src = item.imageOne1;
     document.querySelector(".product-name h3").textContent = item.productName;
     document.querySelector(".color-modal span").textContent = color;
@@ -545,9 +602,8 @@ function addToCartFavBtn(item) {
     document.querySelector(".style-modal span").textContent = style;
     document.querySelector(".product-cost .cost").textContent = cost;
     document.querySelector(".modal-header span").textContent = count;
-    document.querySelector("#cartLength span").innerHTML = `(${
-      +document.querySelector("#cartCount span").textContent + +count
-    })`;
+    JSON.parse(localStorage.getItem("cartData")).forEach(item => add += +item.custom[2])
+    document.querySelector("#cartLength span").innerHTML = `(${add})`;
     let singleCost = document.querySelector(".myModal .product-cost");
     if (item.costLeft) {
       let costLeftOffer = `${item.costLeft
@@ -581,29 +637,27 @@ function addToCartFavBtn(item) {
   }
 }
 // function to get and set data  to fav & cart page 
-let arr = [];
 export function addDataFavCartPage(target, localStorageData,flag) {
   let filtered = localStorageData.filter((item, i, arr) => arr.map((itm) => itm.id).lastIndexOf(item.id) === i);
+  if (target.id == "cartData") renderDataPromo();
+  // function handel removing from cart & favorites 
   renderDataToTarget(target, filtered);
-  if (flag == "cartData") renderDataPromo();
-    // function handel removing from cart & favorites 
-    Remove(flag)
+  Remove(flag)
 }
 // function render Data To fav & cart 
 function renderDataToTarget(target, newData) {
   let countArr = [];
-  let nums = getCount();
+  let nums = getCount(newData);
   Object.values(nums).forEach((arr) => {
     let count = 0;
     arr.forEach((item) => (count += +item.custom[2]));
     countArr.push(count);
   });
-  newData = newData.sort((a, b) => a.id - b.id);
-  newData.forEach((item, i) => {
+  let sortNewData = newData.sort((a, b) => a.id - b.id);
+  sortNewData.forEach((item, i) => {
     let { id, productName, imageOne1, type, cost, costLeft, custom } = item;
     let repeated = countArr[i];
     cost *= repeated;
-    arr.push(cost);
     let costs = `${cost.toString().slice(0, 1)},${cost.toString().slice(1)}.00`;
     target.innerHTML += `
     <div id="item${id}" >
@@ -643,7 +697,6 @@ function renderDataToTarget(target, newData) {
         btn.classList.add("addToCart") ;
         btn.textContent = "add to cart"
       })
-      addToCartFromFav(document.querySelector(".addToCart"))
     }
     if (type.includes("trending"))
       document.querySelector(
@@ -665,27 +718,68 @@ function renderDataToTarget(target, newData) {
       newCost.querySelector(".product-cost div").classList.add("offer");
     }
   });
+}
+// function add data from fav to cart 
+export function addToCartFromFav(addToCart) {
+  addToCart.addEventListener("click", _=> {
+      let count = 0;
+      let favData = JSON.parse(localStorage.getItem("favData")) ?? []
+      let myCartData = JSON.parse(localStorage.getItem("cartData")) ?? []
+    let itemed = favData.filter(item => item.id == addToCart.dataset.id);
+    let neWfavData = favData.filter(item => item.id != addToCart.dataset.id);
+    localStorage.setItem("favData",JSON.stringify(neWfavData));
+    if(myCartData.some(item => item.id == addToCart.dataset.id)){
+      let filterCart = myCartData.filter(item => item.id == addToCart.dataset.id)
+      myCartData = myCartData.filter(item => item.id != addToCart.dataset.id)
+      localStorage.setItem("cartData",JSON.stringify(myCartData));
+      filterCart.forEach(item => count += +item.custom[2])
+      let innerCount = itemed[0].custom[2] ;
+      itemed[0].custom[2] = +innerCount + count ;
+      myCartData.push(itemed[0])
+      localStorage.setItem("cartData",JSON.stringify(myCartData));
+    }else {
+      myCartData.push(itemed[0])
+      localStorage.setItem("cartData",JSON.stringify(myCartData));
+    }
+    document.querySelector(`#item${addToCart.dataset.id}`).remove();
 
-  function addToCartFromFav(addToCart) {
-    if (addToCart) {
-      
-      addToCart.addEventListener("click", _=> {
-        let favData = JSON.parse(localStorage.getItem("favData"))
-      let cartData = JSON.parse(localStorage.getItem("cartData"))
-      let item = favData.filter(item => item.id == addToCart.dataset.id);
-      favData = favData.filter(item => item.id != addToCart.dataset.id);
-      cartData.push(item[0])
-
-      setNumsCartFav("favData",favData)
-      setNumsCartFav("cartData",cartData)
-      localStorage.setItem("favData",JSON.stringify(favData));
-      localStorage.setItem("cartData",JSON.stringify(cartData));
-      console.log(item.id)
-      document.querySelector(`#item${item.id}`).remove()
-      // function addDataToModal(style, color, size, count)
-    })
+    addDataToModal(itemed[0])
+    if(JSON.parse(localStorage.getItem("favData")).length <= 0){
+      let empty = document.querySelector(".empty");
+      empty.classList.add("active");
+      document.querySelector("#favCount span").style.display = 'none'
+    }
+    setNumsCartFav("cartData",myCartData);
+    setNumsCartFav("favData",neWfavData);
+})
+function addDataToModal(itemed) {
+  let length = 0; 
+  JSON.parse(localStorage.getItem("cartData")).forEach(item => length += +item.custom[2])
+  document.querySelector(".myModal.add").classList.add("active");
+  document.querySelector(".ovarlay2").classList.add("active");
+  let cost = `${itemed.cost.toString().slice(0, 1)},${itemed.cost
+.toString()
+.slice(1)}.00`;
+  document.querySelector(".item img").src = itemed.imageOne1;
+  document.querySelector(".myModal.add .product-name h3").textContent = itemed.productName;
+  document.querySelector(".color-modal span").textContent = itemed.custom[0];
+  document.querySelector(".size-modal span").textContent = itemed.custom[1];
+  document.querySelector(".style-modal span").textContent = itemed.custom[3];
+  document.querySelector(".product-cost .cost").textContent = cost;
+  document.querySelector(".modal-header span").textContent = itemed.custom[2];
+  document.querySelector("#cartLength span").innerHTML = length;
+  let singleCost = document.querySelector(".myModal.add .product-cost");
+  if (itemed.costLeft) {
+    let costLeftOffer = `${itemed.costLeft
+      .toString()
+      .slice(0, 1)},${itemed.costLeft.toString().slice(1)}.00`;
+    singleCost.querySelector("div").classList.add("offer");
+    singleCost.querySelector(".deleted .target").innerHTML = costLeftOffer;
+  } else {
+    singleCost.querySelector("div").classList.remove("offer");
+    singleCost.querySelector(".deleted").remove();
   }
-  }
+}
 }
 // function render Data To cart promo section 
 function renderDataPromo() {
@@ -736,52 +830,16 @@ function renderDataPromo() {
   `;
   setFinallyCost();
 }
-// checking if target hav a slider  or sale % or trending page
-function checker(item, target, slider) {
-  let { id, type, cost, costLeft } = item;
-  if (type.includes("trending"))
-    document.querySelector(
-      `button[data-id="${id}"] .trending`
-    ).innerHTML = `<span><h3>Trending</h3></span>`;
-    let newCost = document.querySelector(`button[data-id="${id}"] .product-cost`);
-  if (costLeft) {
-    let offerPercent;
-    if (document.querySelector(".sliderParent")) {
-      offerPercent = document.querySelector(`button[data-id="${id}"] .sliderParent`);
-    }else {
-      offerPercent = document.querySelector(`button[data-id="${id}"] .product-img`);
-    }
-    let percent = ((cost - item.costLeft) / item.costLeft) * 100;
-    let costLeft = `${item.costLeft.toString().slice(0, 1)},${item.costLeft
-      .toString()
-      .slice(1)}.00`;
-    newCost.querySelector("div").classList.add("offer");
-      newCost.innerHTML += `<div class="deleted" ><span>EGP </span> <span> ${costLeft}</span></div>`;
-    offerPercent.innerHTML += `<span>${percent.toFixed()}%</span>`;
-  }
-  if (target.classList.contains("carousel")) {
-    slider.querySelectorAll(".product").forEach((product) => {
-      product.classList.add("item-slider");
-      product.querySelector(".card-item").setAttribute("draggable", false);
-      product
-        .querySelector(".product-img img")
-        .setAttribute("draggable", false);
-    });
-  }
-}
-export function setFinallyCost() {
+// function set finale cost in cart page 
+function setFinallyCost() {
   let subTotal = 0;
   let shipping = 100;
-  arr.forEach((num) => (subTotal += num));
-  let newSubTotal = `EGP ${subTotal.toString().slice(0, 1)},${subTotal
-    .toString()
-    .slice(1)}.00`;
+  JSON.parse(localStorage.getItem("cartData")).forEach((num) => (subTotal += num.cost));
+  let newSubTotal = `EGP ${subTotal.toString().slice(0, 1)},${subTotal.toString().slice(1)}.00`;
   let final = subTotal + shipping;
   document.querySelector(".subTotal").textContent = newSubTotal;
   document.querySelector(".shipping").textContent = `EGP ${shipping}.00`;
-  document.querySelector(".totalCost").textContent = `EGP ${final
-    .toString()
-    .slice(0, 1)},${final.toString().slice(1)}.00`;
+  document.querySelector(".totalCost").textContent = `EGP ${final.toString().slice(0, 1)},${final.toString().slice(1)}.00`;
 }
   // function set count of length data in fav local & cart local 
 export function setNumsCartFav(flag,data) {
@@ -801,8 +859,8 @@ export function setNumsCartFav(flag,data) {
 }
 }
   // function get count to set  length fav & cart  
-function getCount() {
-  let data = JSON.parse(localStorage.getItem("cartData"));
+function getCount(data) {
+  // let data = JSON.parse(localStorage.getItem("cartData"));
   if (data) {
     var result = data.reduce(function (acc, car) {
       acc[car.id] = acc[car.id] || [];
@@ -853,4 +911,3 @@ const getDataThro = function () {
   const arr = [...entries];
   return arr;
 };
-

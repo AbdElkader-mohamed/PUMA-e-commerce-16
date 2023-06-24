@@ -1,21 +1,26 @@
 import {getDataSingleProduct,getData} from './data.js'
 import {draggableSlid} from './slider.js'
-
+// set  product  info in page 
 getDataSingleProduct();
 
+// handel data to sliders 
 getData("singleOne");
 
+// handel data to sliders 
 getData("single");
 
+// handel all accordion
 accordion();
+
 //checking from page size 
 checking();
 
+// close any item with class closeItem 
 closeItem();
 
+//refresh page
 document.querySelector(".myModal .closeBtn").addEventListener("click", _ => window.location.reload())
 document.querySelector(".ovarlay2").addEventListener("click", _ => window.location.reload())
-
 
 function checking() {
   setInterval(_=>{

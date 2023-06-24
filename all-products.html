@@ -267,7 +267,7 @@
                     </ul>
                   </div>
                   <div class="col-3 items">
-                    <a href="#" class="nav-link"><span>Collections</span></a>
+                    <button data-bs-target="collections" class="nav-link"><span>Collections</span></button>
                   </div>
                 </div>
               </div>
@@ -761,10 +761,9 @@
   <!-- start filter -->
   <div class="filter-controls">
     <div class="container p-0">
-      <div class="row">
-        <div class="col-md-9">
-          <div class="d-flex">
-            <div class="filter">
+      <button class="btn main-btn main-btn--dark d-sm-none" id="filterUp" ><i class="bi bi-chevron-bar-up text-white"></i></button>
+      <div class="d-flex">
+          <div class="filter">
               <div class="dropdown ">
                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Gender
@@ -775,8 +774,8 @@
                   <li class="dropdown-item d-none " data-sort="kids">kid's</li>
                 </ul>
               </div>
-            </div>
-            <div class="filter">
+          </div>
+          <div class="filter">
               <div class="dropdown ">
                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   color
@@ -785,8 +784,8 @@
                   
                 </ul>
               </div>
-            </div>
-            <div class="filter">
+          </div>
+          <div class="filter">
               <div class="dropdown ">
                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   size
@@ -794,8 +793,8 @@
                 <ul class="dropdown-menu" id="listSize">
                 </ul>
               </div>
-            </div>
-            <div class="filter">
+          </div>
+          <div class="filter">
               <div class="dropdown ">
                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   price
@@ -808,8 +807,8 @@
                   <li class="dropdown-item d-none" data-sort="8350-100000">egp 8,350.00 - egp 1,00000.00</li>
                 </ul>
               </div>
-            </div>
-            <div class="filter">
+          </div>
+          <div class="filter">
               <div class="dropdown ">
                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   product type
@@ -829,12 +828,9 @@
                   <li class="dropdown-item d-none" data-sort="sandals" >sandals</li>
                 </ul>
               </div>
-            </div>
-            <input type="search" class="form-control" id="searchBarInput" placeholder="Enter Product Name">
           </div>
-        </div>
-        <div class="col-md-3">
-          <div class="dropdown sort ">
+          <input type="search" class="form-control filter" id="searchBarInput" placeholder="Enter Product Name">
+          <div class="dropdown sort filter ms-xl-auto" style="min-width: 200px;">
             <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               sort by
             </button>
@@ -845,7 +841,6 @@
               <li class="dropdown-item" data-sort="high">price high to low</li>
             </ul>
           </div>
-        </div>
       </div>
     </div>
   </div>
@@ -861,6 +856,7 @@
         </div>
         <div class="col-6 ">
           <div class="d-flex gap-2 align-items-center justify-content-end" >
+            <button class="btn main-btn main-btn--outline p-2 d-xl-none" id="openSortTap">Filter <i class="bi bi-funnel"></i></button>
             <button class="btn grid " id="item2" title="2 items"> <img src="./assets/image/grid (1).png" alt="">  </button>
             <button class="btn grid " id="item3" title="3 items"> <img src="./assets/image/grid3.png" alt="">  </button>
             <button class="btn grid " id="item4" title="4 items"> <img src="./assets/image/grid.png"  alt=""> </button>

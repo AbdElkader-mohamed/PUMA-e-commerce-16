@@ -102,6 +102,8 @@ function ifComingSoon(newArr) {
   <video class="comingSoonVideo" src="./assets/video/23SS_ECOM_SP_Archive-Remastered_CNS_1440x500_15s.mp4" autoplay loop></video>
   `
 }
+document.querySelector("#openSortTap").onclick = _=> document.querySelector(".filter-controls").classList.toggle("active")
+document.querySelector("#filterUp").onclick = _=> document.querySelector(".filter-controls").classList.toggle("active")
 
 
 
